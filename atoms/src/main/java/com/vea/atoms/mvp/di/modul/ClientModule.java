@@ -69,7 +69,7 @@ public abstract class ClientModule {
     @Singleton
     @Provides
     static Retrofit provideRetrofit(Application application, @Nullable RetrofitConfiguration configuration, Retrofit.Builder builder, OkHttpClient client
-            , HttpUrl httpUrl, Gson gson) {
+            , HttpUrl httpUrl) {
         builder
                 .baseUrl(httpUrl)//域名
                 .client(client);//设置okhttp
@@ -79,7 +79,7 @@ public abstract class ClientModule {
 
         builder
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//使用 Rxjava
-                .addConverterFactory(GsonConverterFactory.create(gson));//使用 Gson
+                .addConverterFactory(GsonConverterFactory.create());//使用 Gson
         return builder.build();
     }
 

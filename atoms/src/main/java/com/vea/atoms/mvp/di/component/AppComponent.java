@@ -44,6 +44,7 @@ public interface AppComponent {
     interface Builder {
         @BindsInstance
         Builder application(Application application);
+        Builder globalConfigModule(GlobalConfigModule globalConfigModule);
         AppComponent build();
     }
 }

@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 
 import com.vea.atoms.mvp.di.component.AppComponent;
 import com.vea.atoms.mvp.di.component.DaggerAppComponent;
-import com.vea.atoms.mvp.di.modul.AppModule;
 import com.vea.atoms.mvp.integration.ConfigModule;
 import com.vea.atoms.mvp.integration.ManifestParser;
 

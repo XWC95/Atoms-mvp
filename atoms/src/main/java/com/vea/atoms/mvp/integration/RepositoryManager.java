@@ -15,8 +15,6 @@
  */
 package com.vea.atoms.mvp.integration;
 
-import android.app.Application;
-import android.content.Context;
 
 import com.vea.atoms.mvp.integration.cache.Cache;
 import com.vea.atoms.mvp.integration.cache.CacheType;

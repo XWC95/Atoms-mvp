@@ -20,7 +20,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import com.bumptech.glide.Glide;
 import com.vea.atoms.mvp.http.BaseUrl;
 import com.vea.atoms.mvp.http.GlobalHttpHandler;
 import com.vea.atoms.mvp.http.log.DefaultFormatPrinter;
@@ -59,7 +58,6 @@ public class GlobalConfigModule {
     private BaseUrl mBaseUrl;
     private GlobalHttpHandler mHandler;
     private List<Interceptor> mInterceptors;
-    private File mCacheFile;
     private ClientModule.RetrofitConfiguration mRetrofitConfiguration;
     private ClientModule.OkhttpConfiguration mOkhttpConfiguration;
     private RequestInterceptor.Level mPrintHttpLogLevel;
@@ -71,7 +69,6 @@ public class GlobalConfigModule {
         this.mBaseUrl = builder.baseUrl;
         this.mHandler = builder.handler;
         this.mInterceptors = builder.interceptors;
-        this.mCacheFile = builder.cacheFile;
         this.mRetrofitConfiguration = builder.retrofitConfiguration;
         this.mOkhttpConfiguration = builder.okhttpConfiguration;
         this.mPrintHttpLogLevel = builder.printHttpLogLevel;
