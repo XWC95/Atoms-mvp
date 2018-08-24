@@ -3,7 +3,7 @@ package com.vea.atoms.mvp.bean;
 import android.os.Bundle;
 
 /**
- * Created by vea on 2016/11/30.
+ * Created by Vea on 2016/11/30.
  */
 public final class ViewPageInfo {
     public final String tag;

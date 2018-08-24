@@ -24,6 +24,7 @@ import com.vea.atoms.mvp.di.component.DaggerAppComponent;
 import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
 import com.vea.atoms.mvp.integration.ConfigModule;
 import com.vea.atoms.mvp.integration.ManifestParser;
+import com.vea.atoms.mvp.utils.AtomsUtils;
 import com.vea.atoms.mvp.utils.Preconditions;
 
 import java.util.ArrayList;
@@ -124,7 +125,7 @@ public class AppDelegate implements IApp, AppLifecycles {
      * 将 {@link AppComponent} 返回出去, 供其它地方使用, {@link AppComponent} 接口中声明的方法返回的实例, 在 {@link #getAppComponent()} 拿到对象后都可以直接使用
      *
      * @return AppComponent
-     * @see ArmsUtils#obtainAppComponentFromContext(Context) 可直接获取 {@link AppComponent}
+     * @see AtomsUtils#obtainAppComponentFromContext(Context) 可直接获取 {@link AppComponent}
      */
     @NonNull
     @Override

@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 JessYan
+ * Copyright 2017 Vea
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package com.vea.atoms.mvp.http.log;
 
 import android.support.annotation.Nullable;
 
+import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
 import com.vea.atoms.mvp.http.GlobalHttpHandler;
 import com.vea.atoms.mvp.utils.CharacterHandler;
 import com.vea.atoms.mvp.utils.ZipHelper;
@@ -46,9 +47,7 @@ import timber.log.Timber;
  * 解析框架中的网络请求和响应结果,并以日志形式输出,调试神器
  * 可使用 {@link GlobalConfigModule.Builder#printHttpLogLevel(Level)} 控制或关闭日志
  * <p>
- * Created by JessYan on 7/1/2016.
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * Created by Vea on 7/1/2016.
  * ================================================
  */
 @Singleton

@@ -22,7 +22,7 @@ import com.vea.atoms.mvp.di.component.AppComponent;
 
 /**
  * ================================================
- *  BaseApplication
+ *  BaseApplication每个模块的Application都使用B
  *
  * Created by Vea on 2018/8/20
  * ================================================

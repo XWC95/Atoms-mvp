@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 JessYan
+ * Copyright 2018 Vea
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 package com.vea.atoms.mvp.http.log;
 
 
+import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
+
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -27,9 +29,7 @@ import okhttp3.Request;
  *
  * @see DefaultFormatPrinter
  * @see GlobalConfigModule.Builder#formatPrinter(FormatPrinter)
- * Created by JessYan on 31/01/2018 17:36
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * Created by Vea on 31/01/2018 17:36
  * ================================================
  */
 

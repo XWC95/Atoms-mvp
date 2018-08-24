@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 JessYan
+ * Copyright 2018 Vea
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package com.vea.atoms.mvp.http.log;
 
 import android.text.TextUtils;
 
+import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
 import com.vea.atoms.mvp.utils.CharacterHandler;
 
 import java.util.List;
@@ -31,14 +32,11 @@ import timber.log.Timber;
  * 并不能满足自己的需求, 可自行扩展自己理想的打印格式
  *
  * @see GlobalConfigModule.Builder#formatPrinter(FormatPrinter)
- * Created by JessYan on 25/01/2018 14:51
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * Created by Vea on 2018/8/20
  * ================================================
  */
-
 public class DefaultFormatPrinter implements FormatPrinter {
-    private static final String TAG = "ArmsHttpLog";
+    private static final String TAG = "AtomsHttpLog";
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
     private static final String DOUBLE_SEPARATOR = LINE_SEPARATOR + LINE_SEPARATOR;
 
