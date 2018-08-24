@@ -5,18 +5,21 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.vea.atoms.mvp.app.AppManager;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+
 /**
+ * ================================================
  * MVP activity基类
- * Created by xuwc on 2016/11/24.
+ *
+ * Created by vea on 2016/11/24.
+ * ================================================
  */
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivity implements BaseView {
 
     @Inject
     protected T mPresenter;

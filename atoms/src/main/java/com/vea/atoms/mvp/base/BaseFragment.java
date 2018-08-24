@@ -15,10 +15,13 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * MVP
+ * ================================================
+ * MVP Fragment基类
+ *
  * Created by vea on 2016/11/24.
+ * ================================================
  */
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView {
+public abstract class BaseFragment<T extends IPresenter> extends Fragment implements BaseView {
 
     @Inject
     protected T mPresenter;
