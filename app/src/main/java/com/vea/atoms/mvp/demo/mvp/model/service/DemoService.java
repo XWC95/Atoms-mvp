@@ -4,6 +4,7 @@ import com.vea.atoms.mvp.demo.mvp.model.entity.User;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -16,7 +17,6 @@ import retrofit2.http.Query;
 public interface DemoService {
 
     String APP_DOMAIN = "https://api.github.com";
-    String RequestSuccess = "0";
 
 
 

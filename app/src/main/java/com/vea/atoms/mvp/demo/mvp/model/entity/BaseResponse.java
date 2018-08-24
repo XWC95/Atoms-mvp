@@ -17,7 +17,6 @@ package com.vea.atoms.mvp.demo.mvp.model.entity;
 
 import java.io.Serializable;
 
-import me.jessyan.mvparms.demo.mvp.model.api.Api;
 
 /**
  * ================================================
@@ -46,16 +45,16 @@ public class BaseResponse<T> implements Serializable {
         return msg;
     }
 
-    /**
-     * 请求是否成功
-     *
-     * @return
-     */
-    public boolean isSuccess() {
-        if (code.equals(Api.RequestSuccess)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    /**
+//     * 请求是否成功
+//     *
+//     * @return
+//     */
+//    public boolean isSuccess() {
+//        if (code.equals(Api.RequestSuccess)) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 }

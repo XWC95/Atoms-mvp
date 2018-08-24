@@ -34,6 +34,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             //绑定到butterknife
             mUnBinder = ButterKnife.bind(this);
         }
+
+        setupActivityComponent();
         if (mPresenter != null)
             mPresenter.attachView(this);
 
@@ -48,7 +50,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             mPresenter = null;
         }
         mUnBinder.unbind();
-
     }
 
     protected void setupActivityComponent() {

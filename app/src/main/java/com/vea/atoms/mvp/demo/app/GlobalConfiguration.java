@@ -15,11 +15,7 @@
  */
 package com.vea.atoms.mvp.demo.app;
 
-import android.app.Application;
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 
 import com.vea.atoms.mvp.app.AppLifecycles;
 import com.vea.atoms.mvp.demo.BuildConfig;
@@ -27,7 +23,6 @@ import com.vea.atoms.mvp.demo.mvp.model.service.DemoService;
 import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
 import com.vea.atoms.mvp.http.log.RequestInterceptor;
 import com.vea.atoms.mvp.integration.ConfigModule;
-import com.vea.atoms.mvp.integration.cache.IntelligentCache;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

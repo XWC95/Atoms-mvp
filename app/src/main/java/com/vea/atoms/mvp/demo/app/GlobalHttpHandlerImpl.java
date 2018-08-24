@@ -58,14 +58,7 @@ public class GlobalHttpHandlerImpl implements GlobalHttpHandler {
     @Override
     public Response onHttpResultResponse(String httpResult, Interceptor.Chain chain, Response response) {
         if (!TextUtils.isEmpty(httpResult) && RequestInterceptor.isJson(response.body().contentType())) {
-            try {
-                if (response.body() != null) {
-                    String string = response.body().string();
-                    Timber.w("Result ------> " + string);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Timber.w("Result ------> " + httpResult);
         }
 
         /* 这里如果发现 token 过期, 可以先请求最新的 token, 然后在拿新的 token 放入 Request 里去重新请求
