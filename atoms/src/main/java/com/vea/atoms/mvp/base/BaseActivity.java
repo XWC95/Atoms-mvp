@@ -1,53 +1,44 @@
 package com.vea.atoms.mvp.base;
 
-import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
-import com.vea.atoms.mvp.R;
 import com.vea.atoms.mvp.app.AppManager;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * MVP activity基类
  * Created by xuwc on 2016/11/24.
  */
-public abstract class BaseActivity<T extends BasePresenter> extends SupportActivity implements BaseView {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {
 
     @Inject
     protected T mPresenter;
-    protected Activity mContext;
 
     private Unbinder mUnBinder;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayout());
 
-
-        mUnBinder = ButterKnife.bind(this);
-        mContext = this;
-        initInject();
+        int layoutResID = getLayoutId();
+        //如果initView返回0,框架则不会调用setContentView(),当然也不会 Bind ButterKnife
+        if (layoutResID != 0) {
+            setContentView(layoutResID);
+            //绑定到butterknife
+            mUnBinder = ButterKnife.bind(this);
+        }
         if (mPresenter != null)
             mPresenter.attachView(this);
-        AppManager.getAppManager().addActivity(this);
 
-
-        initView();
-        initData();
+        initData(savedInstanceState);
     }
-
 
     @Override
     protected void onDestroy() {
@@ -58,19 +49,18 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         }
         mUnBinder.unbind();
 
-        AppManager.getAppManager().removeActivity(this);
     }
 
+    protected void setupActivityComponent() {
 
-    protected abstract void initInject();
-
-    protected abstract int getLayout();
-
-    protected void initView() {
     }
 
-    protected void initData() {
+    protected abstract int getLayoutId();
+
+    protected abstract void initData(@Nullable Bundle savedInstanceState);
+
+    @Override
+    public void showMessage(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
-
-
 }

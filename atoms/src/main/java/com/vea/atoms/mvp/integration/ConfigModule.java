@@ -3,6 +3,7 @@ package com.vea.atoms.mvp.integration;
 import android.content.Context;
 
 import com.vea.atoms.mvp.app.AppLifecycles;
+import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
 
 import java.util.List;
 
@@ -13,6 +14,14 @@ import java.util.List;
  * ================================================
  */
 public interface ConfigModule {
+
+    /**
+     * 使用{@link GlobalConfigModule.Builder}给框架配置一些配置参数
+     *
+     * @param context
+     * @param builder
+     */
+    void applyOptions(Context context, GlobalConfigModule.Builder builder);
 
     /**
      * 使用{@link AppLifecycles}在Application的生命周期中注入一些操作

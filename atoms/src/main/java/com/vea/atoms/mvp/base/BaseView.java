@@ -5,6 +5,6 @@ package com.vea.atoms.mvp.base;
  */
 public interface BaseView {
 
-    void showError(String msg);
+    void showMessage(String msg);
 
 }
