@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
  * 用于代理 {@link Application} 的生命周期
  *
  * @see AppDelegate
- * Created by xwc on 2018/8/20
+ * Created by vea on 2018/8/20
  * ================================================
  */
 public interface AppLifecycles {

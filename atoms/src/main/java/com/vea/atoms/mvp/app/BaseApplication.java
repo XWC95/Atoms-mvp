@@ -6,9 +6,12 @@ import android.content.Context;
 import com.vea.atoms.mvp.di.component.AppComponent;
 
 /**
- * Created by xwc on 2018/8/17.
+ * ================================================
+ *  BaseApplication
+ *
+ * Created by vea on 2018/8/20
+ * ================================================
  */
-
 public class BaseApplication extends Application implements IApp {
 
     private AppLifecycles mAppDelegate;
