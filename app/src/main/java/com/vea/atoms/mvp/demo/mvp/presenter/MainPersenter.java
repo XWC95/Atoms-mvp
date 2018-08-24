@@ -1,6 +1,6 @@
 package com.vea.atoms.mvp.demo.mvp.presenter;
 
-import com.vea.atoms.mvp.base.RxPresenter;
+import com.vea.atoms.mvp.base.BasePresenter;
 import com.vea.atoms.mvp.demo.mvp.contract.MainContract;
 import com.vea.atoms.mvp.demo.mvp.model.entity.User;
 import com.vea.atoms.mvp.demo.mvp.model.service.DemoService;
@@ -23,7 +23,7 @@ import timber.log.Timber;
  * Created by Administrator on 2018/8/23.
  */
 
-public class MainPersenter extends RxPresenter<MainContract.View> implements MainContract.Presenter {
+public class MainPersenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
     private IRepositoryManager repositoryManager;
 

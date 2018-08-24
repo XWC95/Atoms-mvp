@@ -1,6 +1,6 @@
 package com.vea.atoms.mvp.demo.mvp.contract;
 
-import com.vea.atoms.mvp.base.BasePresenter;
+import com.vea.atoms.mvp.base.IPresenter;
 import com.vea.atoms.mvp.base.BaseView;
 
 /**
@@ -13,7 +13,7 @@ public interface MainContract {
     interface View extends BaseView {
     }
 
-    interface Presenter extends BasePresenter<View> {
+    interface Presenter extends IPresenter<View> {
 
         void getUser(int lastIdQueried, int perPage);
     }
