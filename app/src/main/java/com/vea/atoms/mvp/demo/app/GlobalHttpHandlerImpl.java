@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 JessYan
+ * Copyright 2017 Vea
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,9 @@ package com.vea.atoms.mvp.demo.app;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.google.gson.reflect.TypeToken;
-import com.vea.atoms.mvp.demo.mvp.model.entity.User;
 import com.vea.atoms.mvp.http.GlobalHttpHandler;
 import com.vea.atoms.mvp.http.log.RequestInterceptor;
 
-import java.io.IOException;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -34,12 +31,11 @@ import timber.log.Timber;
  * ================================================
  * 展示 {@link GlobalHttpHandler} 的用法
  * <p>
- * Created by JessYan on 04/09/2017 17:06
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * Created by Vea on 04/09/2017 17:06
  * ================================================
  */
 public class GlobalHttpHandlerImpl implements GlobalHttpHandler {
+
     private Context context;
 
     public GlobalHttpHandlerImpl(Context context) {
