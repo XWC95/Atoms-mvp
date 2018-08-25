@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Atoms-mvp.iml" filepath="$PROJECT_DIR$/Atoms-mvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/CommonSDK/CommonSDK.iml" filepath="$PROJECT_DIR$/CommonSDK/CommonSDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Module-gank/Module-gank.iml" filepath="$PROJECT_DIR$/Module-gank/Module-gank.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/atoms/atoms.iml" filepath="$PROJECT_DIR$/atoms/atoms.iml" />
     </modules>

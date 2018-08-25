@@ -1,1 +1,1 @@
-include ':app', ':atoms', ':CommonSDK'
+include ':app', ':atoms', ':CommonSDK', ':Module-gank'
