@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Vea
+ * Copyright 2018 JessYan
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.vea.atoms.mvp.demo.app;
+package com.vea.atoms.mvp.commonsdk.core;
 
 import android.content.Context;
-import android.text.TextUtils;
+
 
 import com.vea.atoms.mvp.http.GlobalHttpHandler;
-import com.vea.atoms.mvp.http.log.RequestInterceptor;
-
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-import timber.log.Timber;
 
 /**
  * ================================================
@@ -35,7 +32,6 @@ import timber.log.Timber;
  * ================================================
  */
 public class GlobalHttpHandlerImpl implements GlobalHttpHandler {
-
     private Context context;
 
     public GlobalHttpHandlerImpl(Context context) {
@@ -47,16 +43,12 @@ public class GlobalHttpHandlerImpl implements GlobalHttpHandler {
      * 重新请求 token, 并重新执行请求
      *
      * @param httpResult 服务器返回的结果 (已被框架自动转换为字符串)
-     * @param chain      {@link Interceptor.Chain}
-     * @param response   {@link Response}
+     * @param chain {@link okhttp3.Interceptor.Chain}
+     * @param response {@link Response}
      * @return
      */
     @Override
     public Response onHttpResultResponse(String httpResult, Interceptor.Chain chain, Response response) {
-        if (!TextUtils.isEmpty(httpResult) && RequestInterceptor.isJson(response.body().contentType())) {
-            Timber.w("Result ------> " + httpResult);
-        }
-
         /* 这里如果发现 token 过期, 可以先请求最新的 token, 然后在拿新的 token 放入 Request 里去重新请求
         注意在这个回调之前已经调用过 proceed(), 所以这里必须自己去建立网络请求, 如使用 Okhttp 使用新的 Request 去请求
         create a new request and modify it accordingly using the new token
@@ -67,14 +59,14 @@ public class GlobalHttpHandlerImpl implements GlobalHttpHandler {
 
         response.body().close();
         如果使用 Okhttp 将新的请求, 请求成功后, 再将 Okhttp 返回的 Response return 出去即可
-        如果不需要返回新的结果, 则直接把参数 response 返回出去即可*/
+        如果不需要返回新的结果, 则直接把参数 response 返回出去即可 */
         return response;
     }
 
     /**
      * 这里可以在请求服务器之前拿到 {@link Request}, 做一些操作比如给 {@link Request} 统一添加 token 或者 header 以及参数加密等操作
      *
-     * @param chain   {@link Interceptor.Chain}
+     * @param chain {@link okhttp3.Interceptor.Chain}
      * @param request {@link Request}
      * @return
      */
