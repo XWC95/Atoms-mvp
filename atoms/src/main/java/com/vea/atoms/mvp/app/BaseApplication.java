@@ -17,8 +17,11 @@ package com.vea.atoms.mvp.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.vea.atoms.mvp.di.component.AppComponent;
+import com.vea.atoms.mvp.utils.AtomsUtils;
+import com.vea.atoms.mvp.utils.Preconditions;
 
 /**
  * ================================================
@@ -64,7 +67,17 @@ public class BaseApplication extends Application implements IApp {
             this.mAppDelegate.onTerminate(this);
     }
 
+    /**
+     * 将 {@link AppComponent} 返回出去, 供其它地方使用, {@link AppComponent} 接口中声明的方法所返回的实例, 在 {@link #getAppComponent()} 拿到对象后都可以直接使用
+     *
+     * @see AtomsUtils#obtainAppComponentFromContext(Context) 可直接获取 {@link AppComponent}
+     * @return AppComponent
+     */
+    @NonNull
+    @Override
     public AppComponent getAppComponent() {
+        Preconditions.checkNotNull(mAppDelegate, "%s cannot be null", AppDelegate.class.getName());
+        Preconditions.checkState(mAppDelegate instanceof IApp, "%s must be implements %s", AppDelegate.class.getName(), IApp.class.getName());
         return ((IApp) mAppDelegate).getAppComponent();
     }
 }

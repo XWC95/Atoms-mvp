@@ -39,7 +39,7 @@ import java.util.Map;
  *
  *
  *
- * Created by vea on 2016/11/30.
+ * Created by Vea on 2016/11/30.
  */
 @SuppressLint("Recycle")
 public class ViewPagerAdapterFragment extends FragmentStatePagerAdapter {
