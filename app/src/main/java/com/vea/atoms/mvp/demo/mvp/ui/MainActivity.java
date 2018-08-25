@@ -16,7 +16,6 @@ public class MainActivity extends BaseActivity<MainPersenter> implements MainCon
 
     @Override
     protected void setupActivityComponent() {
-
         DaggerDemoComponent
             .builder()
             .appComponent(BaseApplication.getInstance().getAppComponent())

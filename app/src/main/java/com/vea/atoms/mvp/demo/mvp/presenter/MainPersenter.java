@@ -22,7 +22,6 @@ import timber.log.Timber;
 /**
  * Created by Administrator on 2018/8/23.
  */
-
 public class MainPersenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
     private IRepositoryManager repositoryManager;
@@ -46,11 +45,13 @@ public class MainPersenter extends BasePresenter<MainContract.View> implements M
             })
             .subscribeOn(Schedulers.io())
             .doOnSubscribe(disposable -> {
-                //订阅之前常用于显示loading
+                // 订阅之前常用于显示loading
+                Timber.d("subscribe before...");
             }).subscribeOn(AndroidSchedulers.mainThread())
             .observeOn(AndroidSchedulers.mainThread())
             .doFinally(() -> {
                 // 结束之后
+                Timber.d("subscribe after...");
             })
             .subscribe(new Observer<List<User>>() {
                 @Override
@@ -60,12 +61,13 @@ public class MainPersenter extends BasePresenter<MainContract.View> implements M
 
                 @Override
                 public void onNext(List<User> users) {
+                    Timber.d("subscribe ing...");
                     Timber.d(users.size() + "");
                 }
 
                 @Override
                 public void onError(Throwable e) {
-
+                    Timber.d(e);
                 }
 
                 @Override
@@ -73,15 +75,5 @@ public class MainPersenter extends BasePresenter<MainContract.View> implements M
 
                 }
             });
-
-//            .subscribeOn(Schedulers.io())
-//            .doOnSubscribe(disposable -> {
-//                //订阅之前常用于显示loading
-//            }).subscribeOn(AndroidSchedulers.mainThread())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .doFinally(() -> {
-//                // 结束之后
-//            });
-//    }
     }
 }

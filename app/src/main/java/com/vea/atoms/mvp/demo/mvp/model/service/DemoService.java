@@ -10,14 +10,18 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
-/**
- * Created by Administrator on 2018/8/23.
- */
 
+/**
+ * ================================================
+ * 服务端Api相关接口定义
+ *
+ * Created by Vea on 2018/8/23.
+ * ================================================
+ */
 public interface DemoService {
 
     String APP_DOMAIN = "https://api.github.com";
-
+    String RequestSuccess = "0";
 
 
     String HEADER_API_VERSION = "Accept: application/vnd.github.v3+json";
