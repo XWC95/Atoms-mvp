@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 JessYan
+ * Copyright 2017 Vea
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.vea.atoms.mvp.integration.cache;
 import android.app.Application;
 import android.support.annotation.Nullable;
 
+import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -30,9 +31,7 @@ import java.util.Set;
  *
  * @see GlobalConfigModule#provideCacheFactory(Application)
  * @see Cache
- * Created by JessYan on 25/09/2017 16:57
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * Created by Vea on 25/09/2017 16:57
  * ================================================
  */
 public class LruCache<K, V> implements Cache<K, V> {

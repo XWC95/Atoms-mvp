@@ -216,41 +216,6 @@ public class AtomsUtils {
     }
 
     /**
-     * 使用 {@link Snackbar} 显示文本消息
-     * Arms 已将 com.android.support:design 从依赖中移除 (目的是减小 Arms 体积, design 库中含有太多 View)
-     * 因为 Snackbar 在 com.android.support:design 库中, 所以如果框架使用者没有自行依赖 com.android.support:design
-     * Arms 则会使用 Toast 替代 Snackbar 显示信息, 如果框架使用者依赖了 arms-autolayout 库就不用依赖 com.android.support:design 了
-     * 因为在 arms-autolayout 库中已经依赖有 com.android.support:design
-     *
-     * @param text
-     */
-//    public static void snackbarText(String text) {
-//        Message message = new Message();
-//        message.what = SHOW_SNACKBAR;
-//        message.obj = text;
-//        message.arg1 = 0;
-//        AppManager.post(message);
-//    }
-
-    /**
-     * 使用 {@link Snackbar} 长时间显示文本消息
-     * Arms 已将 com.android.support:design 从依赖中移除 (目的是减小 Arms 体积, design 库中含有太多 View)
-     * 因为 Snackbar 在 com.android.support:design 库中, 所以如果框架使用者没有自行依赖 com.android.support:design
-     * Arms 则会使用 Toast 替代 Snackbar 显示信息, 如果框架使用者依赖了 arms-autolayout 库就不用依赖 com.android.support:design 了
-     * 因为在 arms-autolayout 库中已经依赖有 com.android.support:design
-     *
-     * @param text
-     */
-//    public static void snackbarTextWithLong(String text) {
-//        Message message = new Message();
-//        message.what = SHOW_SNACKBAR;
-//        message.obj = text;
-//        message.arg1 = 1;
-//        AppManager.post(message);
-//    }
-
-
-    /**
      * 通过资源id获得drawable
      *
      * @param rID
@@ -261,50 +226,6 @@ public class AtomsUtils {
     }
 
 
-//    /**
-//     * 跳转界面 1 ,通过 {@link AppManager#startActivity(Class)}
-//     *
-//     * @param activityClass
-//     */
-//    public static void startActivity(Class activityClass) {
-//        Message message = new Message();
-//        message.what = START_ACTIVITY;
-//        message.obj = activityClass;
-//        AppManager.post(message);
-//    }
-
-//    /**
-//     * 跳转界面 2 ,通过 {@link AppManager#startActivity(Intent)}
-//     *
-//     * @param
-//     */
-//    public static void startActivity(Intent content) {
-//        Message message = new Message();
-//        message.what = START_ACTIVITY;
-//        message.obj = content;
-//        AppManager.post(message);
-//    }
-
-
-    /**
-     * 跳转界面 3
-     *
-     * @param activity
-     * @param homeActivityClass
-     */
-    public static void startActivity(Activity activity, Class homeActivityClass) {
-        Intent intent = new Intent(activity.getApplicationContext(), homeActivityClass);
-        activity.startActivity(intent);
-    }
-
-    /**
-     * 跳转界面 4
-     *
-     * @param
-     */
-    public static void startActivity(Activity activity, Intent intent) {
-        activity.startActivity(intent);
-    }
 
     /**
      * 获得屏幕的宽度
@@ -430,23 +351,6 @@ public class AtomsUtils {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-//    /**
-//     * 远程遥控 {@link AppManager#killAll()}
-//     */
-//    public static void killAll() {
-//        Message message = new Message();
-//        message.what = KILL_ALL;
-//        AppManager.post(message);
-//    }
-//
-//    /**
-//     * 远程遥控 {@link AppManager#appExit()}
-//     */
-//    public static void exitApp() {
-//        Message message = new Message();
-//        message.what = APP_EXIT;
-//        AppManager.post(message);
-//    }
 
     public static AppComponent obtainAppComponentFromContext(Context context) {
         Preconditions.checkNotNull(context, "%s cannot be null", Context.class.getName());

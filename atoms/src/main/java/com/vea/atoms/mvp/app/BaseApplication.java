@@ -34,12 +34,6 @@ public class BaseApplication extends Application implements IApp {
 
     private AppLifecycles mAppDelegate;
 
-    private static BaseApplication instance;
-
-    public static synchronized BaseApplication getInstance() {
-        return instance;
-    }
-
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -52,7 +46,6 @@ public class BaseApplication extends Application implements IApp {
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
         if (mAppDelegate != null)
             this.mAppDelegate.onCreate(this);
     }
