@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 26
 
@@ -46,4 +46,6 @@ dependencies {
     api project(':CommonSDK')
 
     compileOnly "com.alibaba:arouter-compiler:1.1.4"
+    compileOnly "com.jakewharton:butterknife-compiler:8.8.1"
+    compileOnly  'com.google.dagger:dagger-compiler:2.15'
 }
