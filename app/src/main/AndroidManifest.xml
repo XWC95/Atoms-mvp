@@ -19,7 +19,9 @@
             android:name="com.vea.atoms.mvp.demo.app.GlobalConfiguration"
             android:value="ConfigModule"/>
 
-
+        <meta-data
+            android:name="com.vea.atoms.mvp.commonsdk.core.GlobalConfiguration"
+            android:value="ConfigModule"/>
 
         <activity android:name="com.vea.atoms.mvp.demo.mvp.ui.MainActivity">
             <intent-filter>

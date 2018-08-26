@@ -8,6 +8,13 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+                includeCompileClasspath true
+            }
+        }
     }
     buildTypes {
         release {
@@ -16,6 +23,11 @@ android {
         }
     }
 
+    lintOptions {
+        disable 'InvalidPackage'
+        disable "ResourceType"
+        abortOnError false
+    }
 
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
@@ -25,8 +37,14 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation project(':CommonSDK')
+    runtimeOnly project(':Module-gank')
+
     annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
+    annotationProcessor "com.alibaba:arouter-compiler:1.1.4"
+
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-    implementation project(':atoms')
+
 }

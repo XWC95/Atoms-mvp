@@ -44,14 +44,15 @@ public class MainPersenter extends BasePresenter<MainContract.View> implements M
                 }
             })
             .subscribeOn(Schedulers.io())
+            // 在主线程中回调订阅事件
+            .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe(disposable -> {
                 // 订阅之前常用于显示loading
-                Timber.d("subscribe before...");
+                // TODO
             }).subscribeOn(AndroidSchedulers.mainThread())
-            .observeOn(AndroidSchedulers.mainThread())
             .doFinally(() -> {
-                // 结束之后
-                Timber.d("subscribe after...");
+                // 结束之后隐藏LoadingView
+
             })
             .subscribe(new Observer<List<User>>() {
                 @Override
@@ -61,8 +62,8 @@ public class MainPersenter extends BasePresenter<MainContract.View> implements M
 
                 @Override
                 public void onNext(List<User> users) {
-                    Timber.d("subscribe ing...");
                     Timber.d(users.size() + "");
+                    getView().getUserSuccess();
                 }
 
                 @Override

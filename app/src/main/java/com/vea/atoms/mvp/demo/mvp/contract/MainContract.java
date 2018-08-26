@@ -11,6 +11,8 @@ public interface MainContract {
 
 
     interface View extends BaseView {
+
+        void getUserSuccess();
     }
 
     interface Presenter extends IPresenter<View> {
