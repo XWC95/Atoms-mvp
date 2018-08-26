@@ -1,7 +1,7 @@
 package com.vea.atoms.mvp.demo.mvp.contract;
 
 import com.vea.atoms.mvp.base.IPresenter;
-import com.vea.atoms.mvp.base.BaseView;
+import com.vea.atoms.mvp.base.IView;
 
 /**
  * Created by vea on 2018/8/24.
@@ -10,7 +10,7 @@ import com.vea.atoms.mvp.base.BaseView;
 public interface MainContract {
 
 
-    interface View extends BaseView {
+    interface View extends IView {
 
         void getUserSuccess();
     }

@@ -2,10 +2,8 @@ package com.vea.atoms.mvp.demo.mvp.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.vea.atoms.mvp.app.BaseApplication;
 import com.vea.atoms.mvp.base.BaseActivity;
 import com.vea.atoms.mvp.demo.R;
 import com.vea.atoms.mvp.demo.di.component.DaggerDemoComponent;
