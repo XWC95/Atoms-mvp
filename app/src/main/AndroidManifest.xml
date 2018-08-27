@@ -2,9 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vea.atoms.mvp.demo">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
-
 
     <application
         android:name="com.vea.atoms.mvp.app.BaseApplication"
@@ -18,14 +16,17 @@
         <meta-data
             android:name="com.vea.atoms.mvp.demo.app.GlobalConfiguration"
             android:value="ConfigModule" />
-
+        <!-- 每个业务组件需要声明两个 ConfigModule, CommonSDK 的 ConfigModule 和 业务组件自己的 ConfigModule
+       CommonSDK 的 ConfigModule 含有有每个组件都可共用的配置信息, 业务组件自己的 ConfigModule 含有自己独有的配置
+       信息, 这样即可重用代码, 又可以允许每个组件可自行管理自己独有的配置信息, 如果业务组件没有独有的配置信息则只需要
+       声明 CommonSDK 的 ConfigModule -->
         <meta-data
             android:name="com.vea.atoms.mvp.commonsdk.core.GlobalConfiguration"
             android:value="ConfigModule" />
 
         <activity
-            android:name="com.vea.atoms.mvp.demo.mvp.ui.MainActivity"
-            android:configChanges="orientation|screenSize"
+            android:name=".mvp.ui.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

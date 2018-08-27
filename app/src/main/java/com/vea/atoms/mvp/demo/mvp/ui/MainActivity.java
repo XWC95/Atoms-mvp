@@ -33,9 +33,10 @@ public class MainActivity extends BaseActivity<MainPersenter> implements MainCon
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Timber.d("MainActivity#onCreate");
 
-        Timber.d("onCreate");
     }
+
 
     @Override
     protected int getLayoutId() {
@@ -50,8 +51,7 @@ public class MainActivity extends BaseActivity<MainPersenter> implements MainCon
 
     @Override
     public void getUserSuccess() {
-        Timber.d("getUserSuccess");
         tv.setText("111");
-//        ARouter.getInstance().build("/gank/MainActivity").navigation();
+        ARouter.getInstance().build("/gank/MainActivity").navigation();
     }
 }
