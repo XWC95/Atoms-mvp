@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 JessYan
+ * Copyright 2017 Vea
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,7 @@ import com.vea.atoms.mvp.integration.RepositoryManager;
  * 从而为不同的模块构建不同的缓存策略
  *
  * @see Cache.Factory#build(CacheType)
- * Created by JessYan on 25/09/2017 18:05
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * Created by Vea on 25/09/2017 18:05
  * ================================================
  */
 public interface CacheType {

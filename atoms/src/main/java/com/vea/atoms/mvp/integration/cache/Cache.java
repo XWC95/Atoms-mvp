@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 JessYan
+ * Copyright 2017 Vea
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import android.app.Application;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
 
 import java.util.Set;
 
@@ -29,9 +30,7 @@ import java.util.Set;
  *
  * @see GlobalConfigModule#provideCacheFactory(Application)
  * @see LruCache
- * Created by JessYan on 25/09/2017 16:36
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * Created by Vea on 25/09/2017 16:36
  * ================================================
  */
 public interface Cache<K, V> {

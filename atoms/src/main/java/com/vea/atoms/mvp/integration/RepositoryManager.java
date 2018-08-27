@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 JessYan
+ * Copyright 2017 Vea
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,13 +28,9 @@ import retrofit2.Retrofit;
 
 /**
  * ================================================
- * 用来管理网络请求层,以及数据缓存层,以后可能添加数据库请求层
- * 提供给 {@link IModel} 层必要的 Api 做数据处理
+ * IRepositoryManager实现类用来管理网络请求层
  *
- * @see <a href="https://github.com/JessYanCoding/MVPArms/wiki#2.3">RepositoryManager wiki 官方文档</a>
- * Created by JessYan on 13/04/2017 09:52
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * Created by Vea on 13/04/2017 09:52
  * ================================================
  */
 @Singleton

@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 JessYan
+ * Copyright 2017 Vea
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,7 @@ import java.util.List;
  * 用于解析 AndroidManifest 中的 Meta 属性
  * 配合 {@link ConfigModule} 使用
  * <p>
- * Created by JessYan on 12/04/2017 14:41
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * Created by Vea on 12/04/2017 14:41
  * ================================================
  */
 public final class ManifestParser {
