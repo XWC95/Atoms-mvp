@@ -23,9 +23,11 @@ import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
+import static me.jessyan.retrofiturlmanager.RetrofitUrlManager.DOMAIN_NAME_HEADER;
 
 /**
  * ================================================
@@ -43,6 +45,7 @@ public interface GankService {
     /**
      * 技术文章列表
      */
+    @Headers({DOMAIN_NAME_HEADER + GANK_DOMAIN_NAME})
     @GET("/api/data/{tech}/{num}/{page}")
     Observable<GankBaseResponse<List<GankItemBean>>> getTechList(@Path("tech") String tech, @Path("num") int num, @Path("page") int page);
 }

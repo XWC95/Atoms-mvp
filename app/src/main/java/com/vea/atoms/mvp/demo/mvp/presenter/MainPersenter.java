@@ -16,6 +16,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
+import io.reactivex.observers.ResourceObserver;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -34,25 +35,16 @@ public class MainPersenter extends BasePresenter<MainContract.View> implements M
     @Override
     public void getUser(int lastIdQueried, int perPage) {
 
-        Observable.just(repositoryManager
-            .obtainRetrofitService(DemoService.class)
-            .getUsers(lastIdQueried, 10))
-            .flatMap(new Function<Observable<List<User>>, ObservableSource<List<User>>>() {
-                @Override
-                public ObservableSource<List<User>> apply(Observable<List<User>> listObservable) throws Exception {
-                    return listObservable;
-                }
-            })
+        repositoryManager.obtainRetrofitService(DemoService.class)
+            .getUsers(lastIdQueried, 10)
             .subscribeOn(Schedulers.io())
-            // 在主线程中回调订阅事件
-            .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe(disposable -> {
                 // 订阅之前常用于显示loading
                 // TODO
             }).subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())  // 在主线程中回调订阅事件
             .doFinally(() -> {
                 // 结束之后隐藏LoadingView
-
             })
             .subscribe(new Observer<List<User>>() {
                 @Override

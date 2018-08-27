@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.vea.atoms.mvp.base.BaseFragment;
 import com.vea.atoms.mvp.di.component.AppComponent;
@@ -23,6 +24,7 @@ import com.vea.atoms.mvp.gank.view.RecyclerRefreshLayout;
 import java.util.List;
 
 import butterknife.BindView;
+import timber.log.Timber;
 
 /**
  * Created by xuwc on 2016/11/30.
@@ -69,9 +71,11 @@ public class TechFragment extends BaseFragment<TechPresenter> implements  TechCo
             onRefreshing();
         });
     }
-
+    int i ;
     @Override
     public void getGankDataSuccess(List<GankItemBean> mList, boolean isRefresh) {
+        Timber.d(i+"___________________");
+        i++;
         baseShowItemList = new ListFactory<GankItemBean>().createShowItemList(mAdapter, mRefreshLayout);
         baseShowItemList.showData(isRefresh, mList);
     }

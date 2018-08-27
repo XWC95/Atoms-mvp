@@ -3,7 +3,7 @@
     package="com.vea.atoms.mvp.demo">
 
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 
     <application
@@ -17,13 +17,16 @@
 
         <meta-data
             android:name="com.vea.atoms.mvp.demo.app.GlobalConfiguration"
-            android:value="ConfigModule"/>
+            android:value="ConfigModule" />
 
         <meta-data
             android:name="com.vea.atoms.mvp.commonsdk.core.GlobalConfiguration"
-            android:value="ConfigModule"/>
+            android:value="ConfigModule" />
 
-        <activity android:name="com.vea.atoms.mvp.demo.mvp.ui.MainActivity">
+        <activity
+            android:name="com.vea.atoms.mvp.demo.mvp.ui.MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

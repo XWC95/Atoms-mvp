@@ -2,8 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vea.atoms.mvp.gank">
 
-    <application >
-        <activity android:name=".mvp.ui.activity.GankMainActivity"></activity>
+    <application>
+
+        <meta-data
+            android:name="com.vea.atoms.mvp.gank.app.GlobalConfiguration"
+            android:value="ConfigModule" />
+
+        <activity
+            android:name=".mvp.ui.activity.GankMainActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

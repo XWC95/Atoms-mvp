@@ -1,7 +1,7 @@
 package com.vea.atoms.mvp.gank.mvp.ui;
 
 
-import com.vea.atoms.mvp.gank.app.Constants;
+import com.vea.atoms.mvp.gank.app.GankConstants;
 import com.vea.atoms.mvp.gank.mvp.ui.adapter.BaseRecyclerAdapter;
 import com.vea.atoms.mvp.gank.view.RecyclerRefreshLayout;
 
@@ -33,7 +33,7 @@ public class ShowItemList<T> implements IBaseShowItemList<T> {
     private void more(List<T> data) {
 
         adapter.addAll(data);
-        if (data.size() < Constants.NUM_OF_PAGE) {
+        if (data.size() < GankConstants.NUM_OF_PAGE) {
             showNoMoreView();
 
         } else {
@@ -47,7 +47,7 @@ public class ShowItemList<T> implements IBaseShowItemList<T> {
         adapter.clear();
         adapter.addAll(data);
 
-        if (data.size() < Constants.NUM_OF_PAGE) {
+        if (data.size() < GankConstants.NUM_OF_PAGE) {
             showNoMoreView();
 
         } else {
