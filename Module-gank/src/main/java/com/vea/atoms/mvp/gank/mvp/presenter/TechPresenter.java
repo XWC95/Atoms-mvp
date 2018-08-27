@@ -67,7 +67,7 @@ public class TechPresenter extends BasePresenter<TechContract.View> implements T
 
             @Override
             public void onError(Throwable e) {
-
+                Timber.e(e);
             }
 
             @Override

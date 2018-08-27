@@ -30,7 +30,8 @@ import butterknife.BindView;
 public class TechFragment extends BaseFragment<TechPresenter> implements  TechContract.View, RecyclerRefreshLayout.SuperRefreshLayoutListener {
 
 
-    private String tech;
+    private String tech = "Android";
+
     private TechAdapter mAdapter;
 
     @BindView(R2.id.recycler_view)
