@@ -22,7 +22,7 @@ package com.vea.atoms.mvp.base;
  * Created by Vea on 2016/11/24.
  * ================================================
  */
-public interface BaseView {
+public interface IView {
 
     void showMessage(String msg);
 

@@ -24,6 +24,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.vea.atoms.mvp.di.component.AppComponent;
+import com.vea.atoms.mvp.utils.AtomsUtils;
+
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
@@ -36,7 +39,7 @@ import butterknife.Unbinder;
  * Created by Vea on 2016/11/24.
  * ================================================
  */
-public abstract class BaseFragment<T extends IPresenter> extends Fragment implements BaseView {
+public abstract class BaseFragment<T extends IPresenter> extends Fragment implements IView {
 
     @Inject
     protected T mPresenter;
@@ -52,11 +55,12 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        setupFragmentComponent(AtomsUtils.obtainAppComponentFromContext(getActivity()));
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
         mUnBinder = ButterKnife.bind(this, view);
-        setupFragmentComponent();
         initData(savedInstanceState);
     }
 
@@ -75,7 +79,7 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
         }
     }
 
-    protected void setupFragmentComponent() {
+    protected void setupFragmentComponent(AppComponent appComponent) {
 
     }
 

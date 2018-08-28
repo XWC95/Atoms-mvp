@@ -27,7 +27,7 @@ import io.reactivex.disposables.Disposable;
  * Created by Vea on 2016/11/24.
  * ================================================
  */
-public class BasePresenter<T extends BaseView> implements IPresenter<T> {
+public class BasePresenter<T extends IView> implements IPresenter<T> {
 
 
     protected WeakReference<T> mView;

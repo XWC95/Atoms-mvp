@@ -20,21 +20,23 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.vea.atoms.mvp.di.component.AppComponent;
+import com.vea.atoms.mvp.utils.AtomsUtils;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
+import timber.log.Timber;
 
 /**
  * ================================================
  * MVP activity基类
- *
+ * <p>
  * Created by Vea on 2016/11/24.
  * ================================================
  */
-public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivity implements IView {
 
     @Inject
     protected T mPresenter;
@@ -45,6 +47,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         int layoutResID = getLayoutId();
         //如果initView返回0,框架则不会调用setContentView(),当然也不会 Bind ButterKnife
         if (layoutResID != 0) {
@@ -52,11 +55,10 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
             //绑定到butterknife
             mUnBinder = ButterKnife.bind(this);
         }
-
-        setupActivityComponent();
-        if (mPresenter != null)
+        setupActivityComponent(AtomsUtils.obtainAppComponentFromContext(this));
+        if (mPresenter != null) {
             mPresenter.attachView(this);
-
+        }
         initData(savedInstanceState);
     }
 
@@ -70,7 +72,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
         mUnBinder.unbind();
     }
 
-    protected void setupActivityComponent() {
+    protected void setupActivityComponent(AppComponent appComponent) {
 
     }
 

@@ -31,27 +31,17 @@ public class MainActivity extends BaseActivity<MainPersenter> implements MainCon
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Timber.d("MainActivity#onCreate");
-
-    }
-
-
-    @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
     }
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
-        Timber.d("initData");
         mPresenter.getUser(1, 10);
     }
 
     @Override
     public void getUserSuccess() {
-        tv.setText("111");
         ARouter.getInstance().build("/gank/MainActivity").navigation();
     }
 }
