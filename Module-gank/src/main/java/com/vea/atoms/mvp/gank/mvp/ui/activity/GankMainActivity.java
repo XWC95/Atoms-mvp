@@ -8,19 +8,18 @@ import android.os.Bundle;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.vea.atoms.mvp.base.BaseActivity;
 import com.vea.atoms.mvp.base.ViewPagerAdapterFragment;
+import com.vea.atoms.mvp.commonsdk.core.RouterHub;
 import com.vea.atoms.mvp.gank.R;
 import com.vea.atoms.mvp.gank.R2;
-import com.vea.atoms.mvp.gank.mvp.ui.fragment.TechFragment;
+import com.vea.atoms.mvp.gank.mvp.ui.fragment.GirlFragment;
 
 import butterknife.BindView;
+import timber.log.Timber;
 
-@Route(path = "/gank/MainActivity")
+@Route(path = RouterHub.GANK_MAIN_ACTIVITY)
 public class GankMainActivity extends BaseActivity {
 
     private ViewPagerAdapterFragment mAdapter;
-
-    String[] tabTitle = new String[]{"Android", "福利"};
-    String[] tabTag = new String[]{"wo", "cao"};
 
     @BindView(R2.id.tab)
     TabLayout tablayout;
@@ -30,14 +29,12 @@ public class GankMainActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
         return R.layout.gank_activity_main;
-
-
     }
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
         mAdapter = new ViewPagerAdapterFragment(getSupportFragmentManager(), this);
-        mAdapter.addTab(tabTitle[0], tabTag[0], TechFragment.class, null);
+        mAdapter.addTab("福利", "tag", GirlFragment.class, null);
         viewpager.setAdapter(mAdapter);
         tablayout.setupWithViewPager(viewpager);
     }

@@ -1,11 +1,12 @@
 package com.vea.atoms.mvp.gank.mvp.presenter;
 
 import com.vea.atoms.mvp.base.BasePresenter;
-import com.vea.atoms.mvp.gank.app.GankConstants;
-import com.vea.atoms.mvp.gank.mvp.contract.TechContract;
+import com.vea.atoms.mvp.commonsdk.adapter.ShowItemList;
+import com.vea.atoms.mvp.gank.mvp.contract.GirlContract;
 import com.vea.atoms.mvp.gank.mvp.model.entity.GankBaseResponse;
 import com.vea.atoms.mvp.gank.mvp.model.entity.GankItemBean;
 import com.vea.atoms.mvp.gank.mvp.model.service.GankService;
+import com.vea.atoms.mvp.gank.mvp.ui.fragment.GirlFragment;
 import com.vea.atoms.mvp.integration.IRepositoryManager;
 
 import java.util.List;
@@ -19,21 +20,25 @@ import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 /**
- * Created by xuwc on 2016/11/30.
+ * ================================================
+ *
+ * @see GirlFragment
+ * Created by Vea on 2016/11/24
+ * ================================================
  */
-public class TechPresenter extends BasePresenter<TechContract.View> implements TechContract.Presenter {
+public class GirlPresenter extends BasePresenter<GirlContract.View> implements GirlContract.Presenter {
 
     private int mCurrentPager = 1;
 
     private IRepositoryManager repositoryManager;
 
     @Inject
-    public TechPresenter(IRepositoryManager repositoryManager) {
+    public GirlPresenter(IRepositoryManager repositoryManager) {
         this.repositoryManager = repositoryManager;
     }
 
     @Override
-    public void getGankData(String tech, boolean isRefresh) {
+    public void getGankData(boolean isRefresh) {
 
         if (isRefresh) {
             mCurrentPager = 1;
@@ -42,7 +47,7 @@ public class TechPresenter extends BasePresenter<TechContract.View> implements T
         }
 
         repositoryManager.obtainRetrofitService(GankService.class)
-            .getTechList(tech, GankConstants.NUM_OF_PAGE, mCurrentPager)
+            .getTechList(ShowItemList.NUM_OF_PAGE, mCurrentPager)
             .subscribeOn(Schedulers.io())
             .doOnSubscribe(disposable -> {
 

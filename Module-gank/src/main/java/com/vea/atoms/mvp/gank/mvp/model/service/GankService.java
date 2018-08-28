@@ -43,9 +43,9 @@ public interface GankService {
     String GANK_DOMAIN = "http://gank.io";
 
     /**
-     * 技术文章列表
+     * 福利
      */
     @Headers({DOMAIN_NAME_HEADER + GANK_DOMAIN_NAME})
-    @GET("/api/data/{tech}/{num}/{page}")
-    Observable<GankBaseResponse<List<GankItemBean>>> getTechList(@Path("tech") String tech, @Path("num") int num, @Path("page") int page);
+    @GET("/api/data/福利/{num}/{page}")
+    Observable<GankBaseResponse<List<GankItemBean>>> getTechList(@Path("num") int num, @Path("page") int page);
 }

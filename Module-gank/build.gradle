@@ -34,6 +34,8 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+
+    resourcePrefix "gank_" //给 Module 内的资源名增加前缀, 避免资源名冲突
 }
 
 dependencies {
