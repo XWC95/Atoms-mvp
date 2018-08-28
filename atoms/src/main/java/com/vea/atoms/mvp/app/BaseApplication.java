@@ -23,6 +23,8 @@ import com.vea.atoms.mvp.di.component.AppComponent;
 import com.vea.atoms.mvp.utils.AtomsUtils;
 import com.vea.atoms.mvp.utils.Preconditions;
 
+import timber.log.Timber;
+
 /**
  * ================================================
  *  BaseApplication每个模块的Application都使用B
@@ -48,6 +50,8 @@ public class BaseApplication extends Application implements IApp {
         super.onCreate();
         if (mAppDelegate != null)
             this.mAppDelegate.onCreate(this);
+
+        Timber.d("BaseApplication#onCreate");
     }
 
     /**
