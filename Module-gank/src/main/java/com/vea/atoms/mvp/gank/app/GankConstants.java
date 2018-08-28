@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 JessYan
+ * Copyright 2016 Vea
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,15 +18,13 @@ package com.vea.atoms.mvp.gank.app;
 
 /**
  * ================================================
+ * 存放一些静态的变量
+ *
  * Created by Vea on 2016/11/24
  * ================================================
  */
-public class GankConstants {
+public interface GankConstants {
 
-    /**
-     * item 默认大小
-     */
-    public static final int NUM_OF_PAGE = 20;
 
 
 

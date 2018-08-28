@@ -18,7 +18,7 @@ package com.vea.atoms.mvp.gank.di.component;
 import com.vea.atoms.mvp.di.component.AppComponent;
 import com.vea.atoms.mvp.di.scope.ActivityScope;
 import com.vea.atoms.mvp.gank.di.module.GankModule;
-import com.vea.atoms.mvp.gank.mvp.ui.fragment.TechFragment;
+import com.vea.atoms.mvp.gank.mvp.ui.fragment.GirlFragment;
 
 import dagger.Component;
 
@@ -33,5 +33,5 @@ import dagger.Component;
 @Component(modules = GankModule.class, dependencies = AppComponent.class)
 public interface GankComponent {
 
-    void inject(TechFragment activity);
+    void inject(GirlFragment activity);
 }

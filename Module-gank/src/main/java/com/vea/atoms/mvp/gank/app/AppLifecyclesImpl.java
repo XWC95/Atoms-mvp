@@ -19,7 +19,9 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.squareup.leakcanary.LeakCanary;
 import com.vea.atoms.mvp.app.AppLifecycles;
+import com.vea.atoms.mvp.gank.BuildConfig;
 import com.vea.atoms.mvp.gank.mvp.model.service.GankService;
 
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
@@ -41,10 +43,16 @@ public class AppLifecyclesImpl implements AppLifecycles {
 
     @Override
     public void onCreate(@NonNull Application application) {
-
+        if (LeakCanary.isInAnalyzerProcess(application)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
         //使用 RetrofitUrlManager 切换 BaseUrl
         RetrofitUrlManager.getInstance().putDomain(GankService.GANK_DOMAIN_NAME, GankService.GANK_DOMAIN);
-
+        if(!BuildConfig.DEBUG){
+            LeakCanary.install(application);
+        }
     }
 
     @Override

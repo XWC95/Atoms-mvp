@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.vea.atoms.mvp.gank.view.RecyclerRefreshLayout
+    <com.vea.atoms.mvp.commonsdk.adapter.RecyclerRefreshLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    </com.vea.atoms.mvp.gank.view.RecyclerRefreshLayout>
+    </com.vea.atoms.mvp.commonsdk.adapter.RecyclerRefreshLayout>
 
 
 
