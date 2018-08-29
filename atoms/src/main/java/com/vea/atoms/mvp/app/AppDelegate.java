@@ -80,7 +80,8 @@ public class AppDelegate implements IApp, AppLifecycles {
             .application(mApplication)//提供application
             .globalConfigModule(getGlobalConfigModule(mApplication, mModules))//全局配置
             .build();
-        mAppComponent.inject(this);
+        mAppComponent.injectDeleagate(this);
+
 
         //执行框架外部, 开发者扩展的 App onCreate 逻辑
         for (AppLifecycles lifecycle : mAppLifecycles) {
@@ -100,7 +101,6 @@ public class AppDelegate implements IApp, AppLifecycles {
         this.mAppLifecycles = null;
         this.mApplication = null;
     }
-
 
     /**
      * 将app的全局配置信息封装进module(使用Dagger注入到需要配置信息的地方)

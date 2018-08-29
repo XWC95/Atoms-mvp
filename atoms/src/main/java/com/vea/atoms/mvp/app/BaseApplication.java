@@ -27,8 +27,8 @@ import timber.log.Timber;
 
 /**
  * ================================================
- *  BaseApplication每个模块的Application都使用B
- *
+ * BaseApplication每个模块的Application都使用B
+ * <p>
  * Created by Vea on 2018/8/20
  * ================================================
  */
@@ -67,8 +67,8 @@ public class BaseApplication extends Application implements IApp {
     /**
      * 将 {@link AppComponent} 返回出去, 供其它地方使用, {@link AppComponent} 接口中声明的方法所返回的实例, 在 {@link #getAppComponent()} 拿到对象后都可以直接使用
      *
-     * @see AtomsUtils#obtainAppComponentFromContext(Context) 可直接获取 {@link AppComponent}
      * @return AppComponent
+     * @see AtomsUtils#obtainAppComponentFromContext(Context) 可直接获取 {@link AppComponent}
      */
     @NonNull
     @Override

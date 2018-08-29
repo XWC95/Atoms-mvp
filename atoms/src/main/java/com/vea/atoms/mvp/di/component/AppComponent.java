@@ -19,6 +19,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.vea.atoms.mvp.app.AppDelegate;
+import com.vea.atoms.mvp.app.BaseApplication;
 import com.vea.atoms.mvp.di.modul.AppModule;
 import com.vea.atoms.mvp.di.modul.ClientModule;
 import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
@@ -36,19 +37,22 @@ import okhttp3.OkHttpClient;
  * ================================================
  * 可通过 {@link AtomsUtils#obtainAppComponentFromContext(Context)} 拿到此接口的实现类
  * 拥有此接口的实现类即可调用对应的方法拿到 Dagger 提供的对应实例
- *
+ * <p>
  * Created by Vea on 2016/11/24.
  * ================================================
  */
 @Singleton
-@Component(modules = {AppModule.class,ClientModule.class, GlobalConfigModule.class})
-public interface AppComponent {
+@Component(modules = {
+    AppModule.class,
+    ClientModule.class,
+    GlobalConfigModule.class,
+})
+public interface AppComponent  {
 
     Application application();
 
     //用于管理网络请求层,以及数据缓存层
     IRepositoryManager repositoryManager();
-
 
     OkHttpClient okHttpClient();
 
@@ -58,14 +62,15 @@ public interface AppComponent {
     //用于创建框架所需缓存对象的工厂
     Cache.Factory cacheFactory();
 
-
-    void inject(AppDelegate delegate);
+    void injectDeleagate(AppDelegate delegate);
 
     @Component.Builder
     interface Builder {
         @BindsInstance
         Builder application(Application application);
+
         Builder globalConfigModule(GlobalConfigModule globalConfigModule);
+
         AppComponent build();
     }
 }

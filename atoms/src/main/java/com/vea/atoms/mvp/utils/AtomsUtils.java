@@ -20,6 +20,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Message;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -356,6 +358,21 @@ public class AtomsUtils {
         Preconditions.checkNotNull(context, "%s cannot be null", Context.class.getName());
         Preconditions.checkState(context.getApplicationContext() instanceof IApp, "Application does not implements IApp");
         return ((IApp) context.getApplicationContext()).getAppComponent();
+    }
+
+    /**
+     * 检查网络是否可用
+     * @param context
+     * @return true,false
+     */
+    public static boolean isNetWorkAvailable(Context context){
+
+        ConnectivityManager connectManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo info = connectManager.getActiveNetworkInfo();
+
+        return (info!=null && info.isAvailable());
+
     }
 
 }

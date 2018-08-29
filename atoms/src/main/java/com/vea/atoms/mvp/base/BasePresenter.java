@@ -15,6 +15,8 @@
  */
 package com.vea.atoms.mvp.base;
 
+import com.vea.atoms.mvp.utils.Preconditions;
+
 import java.lang.ref.WeakReference;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -23,21 +25,37 @@ import io.reactivex.disposables.Disposable;
 /**
  * ================================================
  * Presenter基类
- *
+ * <p>
  * Created by Vea on 2016/11/24.
  * ================================================
  */
 public class BasePresenter<T extends IView> implements IPresenter<T> {
-
 
     protected WeakReference<T> mView;
 
     CompositeDisposable mDisposables;
 
 
+    /**
+     * 如果当前页面不需要操作数据,只需要 View 层,则使用此构造函数
+     *
+     * @param rootView
+     */
+    public BasePresenter(T rootView) {
+        Preconditions.checkNotNull(rootView, "%s cannot be null", IView.class.getName());
+        this.mView = new WeakReference<T>(rootView);
+    }
+
+    public BasePresenter() {
+
+    }
+
+
     @Override
     public void attachView(T view) {
-        mView = new WeakReference<T>(view);
+        if(mView == null){
+            mView = new WeakReference<T>(view);
+        }
     }
 
     @Override
@@ -68,5 +86,4 @@ public class BasePresenter<T extends IView> implements IPresenter<T> {
         }
         mDisposables.add(disposable);
     }
-
 }
