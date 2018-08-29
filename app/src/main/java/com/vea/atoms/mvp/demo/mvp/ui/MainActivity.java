@@ -15,7 +15,6 @@ import com.vea.atoms.mvp.commonsdk.adapter.IBaseShowItemList;
 import com.vea.atoms.mvp.commonsdk.adapter.ListFactory;
 import com.vea.atoms.mvp.commonsdk.adapter.RecyclerRefreshLayout;
 import com.vea.atoms.mvp.commonsdk.core.RouterHub;
-import com.vea.atoms.mvp.commonsdk.view.spread.BaseViewHelper;
 import com.vea.atoms.mvp.demo.R;
 import com.vea.atoms.mvp.demo.di.component.DaggerDemoComponent;
 import com.vea.atoms.mvp.demo.mvp.adapter.ManListAdapter;
@@ -36,7 +35,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     private IBaseShowItemList<User> baseShowItemList;
 
-    private BaseViewHelper helper;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;

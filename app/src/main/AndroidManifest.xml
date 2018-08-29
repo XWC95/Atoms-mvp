@@ -30,7 +30,7 @@
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".mvp.ui.SplashActivity">
+        <activity android:name=".mvp.ui.SplashActivity" android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

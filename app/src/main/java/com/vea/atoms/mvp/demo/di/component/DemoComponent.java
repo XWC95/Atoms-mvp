@@ -15,8 +15,8 @@
  */
 package com.vea.atoms.mvp.demo.di.component;
 
-import com.vea.atoms.mvp.demo.mvp.ui.MainActivity;
 import com.vea.atoms.mvp.demo.di.module.DemoModule;
+import com.vea.atoms.mvp.demo.mvp.ui.MainActivity;
 import com.vea.atoms.mvp.di.component.AppComponent;
 import com.vea.atoms.mvp.di.scope.ActivityScope;
 
@@ -25,7 +25,7 @@ import dagger.Component;
 /**
  * ================================================
  * 展示 Component 的用法
- *
+ * <p>
  * Created by Vea on 09/04/2016 11:17
  * ================================================
  */
