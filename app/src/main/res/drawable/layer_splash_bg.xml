@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@android:color/black" />
     <!-- 顶层Logo居中 -->
-    <item android:bottom="60dp">
+    <item>
         <bitmap
             android:gravity="center"
             android:src="@mipmap/splash_logo"

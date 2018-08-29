@@ -3,6 +3,8 @@ package com.vea.atoms.mvp.demo.mvp.ui;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.vea.atoms.mvp.commonsdk.core.RouterHub;
