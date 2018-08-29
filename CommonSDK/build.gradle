@@ -36,6 +36,8 @@ dependencies {
 
     // 如果想要同时支持多个BaseUrl ，否则可以去掉
     api "me.jessyan:retrofit-url-manager:1.4.0"
-
+    // 加载图片框架
     api 'com.github.bumptech.glide:glide:4.8.0'
+    // 权限框架
+    api 'com.yanzhenjie:permission:2.0.0-rc11'
 }

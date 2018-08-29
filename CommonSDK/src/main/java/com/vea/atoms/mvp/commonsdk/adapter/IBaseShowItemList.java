@@ -1,4 +1,4 @@
-package com.vea.atoms.mvp.gank.mvp.ui;
+package com.vea.atoms.mvp.commonsdk.adapter;
 
 import java.util.List;
 

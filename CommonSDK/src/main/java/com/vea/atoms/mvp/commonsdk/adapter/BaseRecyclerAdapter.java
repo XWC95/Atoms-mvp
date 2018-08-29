@@ -1,4 +1,4 @@
-package com.vea.atoms.mvp.gank.mvp.ui.adapter;
+package com.vea.atoms.mvp.commonsdk.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,8 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-
-import com.vea.atoms.mvp.gank.R;
+import com.vea.atoms.mvp.commonsdk.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +33,13 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
     public final int BEHAVIOR_MODE;
     protected int mState;
 
+    // 没有多余item
     public static final int NEITHER = 0;
+    // 只有头布局
     public static final int ONLY_HEADER = 1;
+    // 只有底布局
     public static final int ONLY_FOOTER = 2;
+    // 头布局和底布局都有
     public static final int BOTH_HEADER_FOOTER = 3;
 
     public static final int VIEW_TYPE_NORMAL = 0;

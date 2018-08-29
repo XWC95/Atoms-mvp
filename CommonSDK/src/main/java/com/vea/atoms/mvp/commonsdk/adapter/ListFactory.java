@@ -1,7 +1,5 @@
-package com.vea.atoms.mvp.gank.mvp.ui;
+package com.vea.atoms.mvp.commonsdk.adapter;
 
-import com.vea.atoms.mvp.gank.mvp.ui.adapter.BaseRecyclerAdapter;
-import com.vea.atoms.mvp.gank.view.RecyclerRefreshLayout;
 
 
 /**

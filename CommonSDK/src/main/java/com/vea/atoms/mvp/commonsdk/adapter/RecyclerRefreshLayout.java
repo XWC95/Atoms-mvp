@@ -1,4 +1,4 @@
-package com.vea.atoms.mvp.gank.view;
+package com.vea.atoms.mvp.commonsdk.adapter;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;

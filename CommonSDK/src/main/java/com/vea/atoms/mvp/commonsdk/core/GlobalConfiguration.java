@@ -26,11 +26,21 @@ import com.vea.atoms.mvp.commonsdk.http.Api;
 import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
 import com.vea.atoms.mvp.http.log.RequestInterceptor;
 import com.vea.atoms.mvp.integration.ConfigModule;
+import com.vea.atoms.mvp.utils.AtomsUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.ButterKnife;
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
+import okhttp3.Cache;
+import okhttp3.CacheControl;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
+import okhttp3.Request;
+import okhttp3.Response;
 import timber.log.Timber;
 
 
@@ -108,13 +118,47 @@ public final class GlobalConfiguration implements ConfigModule {
                 // 这里提供一个全局处理 Http 请求和响应结果的处理类,可以比客户端提前一步拿到服务器返回的结果,可以做一些操作,比如token超时,重新获取
                 .globalHttpHandler(new GlobalHttpHandlerImpl(context))
 
-                .retrofitConfiguration((context1, retrofitBuilder) -> {//这里可以自己自定义配置Retrofit的参数, 甚至您可以替换框架配置好的 OkHttpClient 对象 (但是不建议这样做, 这样做您将损失框架提供的很多功能)
+                .retrofitConfiguration((appContext, retrofitBuilder) -> {//这里可以自己自定义配置Retrofit的参数, 甚至您可以替换框架配置好的 OkHttpClient 对象 (但是不建议这样做, 这样做您将损失框架提供的很多功能)
 //                    retrofitBuilder.addConverterFactory(FastJsonConverterFactory.create());//比如使用fastjson替代gson
                 })
-                .okhttpConfiguration((context1, okhttpBuilder) -> {//这里可以自己自定义配置Okhttp的参数
+                .okhttpConfiguration((appContext, okhttpBuilder) -> {//这里可以自己自定义配置Okhttp的参数
 //                    okhttpBuilder.sslSocketFactory(); //支持 Https,详情请百度
-                    okhttpBuilder.writeTimeout(10, TimeUnit.SECONDS);
 
+                    //让 Retrofit 同时支持多个 BaseUrl 以及动态改变 BaseUrl. 不需要可以删掉。详细使用请方法查看 https://github.com/JessYanCoding/RetrofitUrlManager
+                    RetrofitUrlManager.getInstance().with(okhttpBuilder);
+                    //cache
+                    Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = chain -> {
+                        CacheControl.Builder cacheBuilder = new CacheControl.Builder();
+                        cacheBuilder.maxAge(0, TimeUnit.SECONDS);
+                        cacheBuilder.maxStale(365,TimeUnit.DAYS);
+                        CacheControl cacheControl = cacheBuilder.build();
+                        Request request = chain.request();
+                        if(!AtomsUtils.isNetWorkAvailable(appContext)){
+                            request = request.newBuilder()
+                                .cacheControl(cacheControl)
+                                .build();
+                        }
+                        Response originalResponse = chain.proceed(request);
+                        if (AtomsUtils.isNetWorkAvailable(appContext)) {
+                            int maxAge = 0; // read from cache
+                            return originalResponse.newBuilder()
+                                .removeHeader("Pragma")
+                                .header("Cache-Control", "public ,max-age=" + maxAge)
+                                .build();
+                        } else {
+                            int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
+                            return originalResponse.newBuilder()
+                                .removeHeader("Pragma")
+                                .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+                                .build();
+                        }
+                    };
+                    //cache url
+                    File httpCacheDirectory = new File(appContext.getCacheDir(), "responses");
+                    int cacheSize = 10 * 1024 * 1024; // 10 MiB
+                    Cache cache = new Cache(httpCacheDirectory, cacheSize);
+                    okhttpBuilder .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
+                        .cache(cache).build();
                 });
     }
 
@@ -135,7 +179,8 @@ public final class GlobalConfiguration implements ConfigModule {
                     ButterKnife.setDebug(true);
                     ARouter.openLog();     // 打印日志
                     ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
-                    // TODO
+                    RetrofitUrlManager.getInstance().setDebug(true);
+
                 }
                 ARouter.init(application); // 尽可能早,推荐在Application中初始化
             }
