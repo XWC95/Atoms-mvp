@@ -48,7 +48,8 @@ public class GirlPresenter extends BasePresenter<GirlContract.View> implements G
     private IRepositoryManager repositoryManager;
 
     @Inject
-    public GirlPresenter(IRepositoryManager repositoryManager) {
+    public GirlPresenter(IRepositoryManager repositoryManager, GirlContract.View view) {
+        super(view);
         this.repositoryManager = repositoryManager;
     }
 
