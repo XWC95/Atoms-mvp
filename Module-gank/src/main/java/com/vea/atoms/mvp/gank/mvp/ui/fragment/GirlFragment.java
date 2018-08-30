@@ -15,12 +15,17 @@
  */
 package com.vea.atoms.mvp.gank.mvp.ui.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.vea.atoms.mvp.base.BaseFragment;
+import com.vea.atoms.mvp.commonsdk.adapter.BaseRecyclerAdapter;
+import com.vea.atoms.mvp.commonsdk.adapter.IBaseShowItemList;
+import com.vea.atoms.mvp.commonsdk.adapter.ListFactory;
+import com.vea.atoms.mvp.commonsdk.adapter.RecyclerRefreshLayout;
 import com.vea.atoms.mvp.di.component.AppComponent;
 import com.vea.atoms.mvp.gank.R;
 import com.vea.atoms.mvp.gank.R2;
@@ -28,14 +33,12 @@ import com.vea.atoms.mvp.gank.di.component.DaggerGankComponent;
 import com.vea.atoms.mvp.gank.mvp.contract.GirlContract;
 import com.vea.atoms.mvp.gank.mvp.model.entity.GankItemBean;
 import com.vea.atoms.mvp.gank.mvp.presenter.GirlPresenter;
-import com.vea.atoms.mvp.commonsdk.adapter.IBaseShowItemList;
-import com.vea.atoms.mvp.commonsdk.adapter.ListFactory;
-import com.vea.atoms.mvp.commonsdk.adapter.BaseRecyclerAdapter;
 import com.vea.atoms.mvp.gank.mvp.ui.adapter.GirlListAdapter;
-import com.vea.atoms.mvp.commonsdk.adapter.RecyclerRefreshLayout;
 import com.vea.atoms.mvp.utils.AtomsUtils;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -48,7 +51,13 @@ import butterknife.BindView;
  */
 public class GirlFragment extends BaseFragment<GirlPresenter> implements GirlContract.View, RecyclerRefreshLayout.SuperRefreshLayoutListener {
 
-    private GirlListAdapter adapter;
+    @Inject
+    GirlListAdapter adapter;
+
+
+    // 如果不是必须要使用还可以使用Lzay
+//    @Inject
+//    Lazy<GirlListAdapter> adapter;
 
     @BindView(R2.id.recycler_view)
     RecyclerView recyclerView;
@@ -62,6 +71,7 @@ public class GirlFragment extends BaseFragment<GirlPresenter> implements GirlCon
         DaggerGankComponent
             .builder()
             .appComponent(appComponent)
+            .view(this)
             .build()
             .inject(this);
     }
@@ -82,8 +92,8 @@ public class GirlFragment extends BaseFragment<GirlPresenter> implements GirlCon
      * 初始化RecyclerView
      */
     private void initRecycleView() {
-        adapter = new GirlListAdapter(getActivity());
-        adapter.setState(BaseRecyclerAdapter.STATE_HIDE, false);
+//        adapter = new GirlListAdapter(getActivity());
+//        adapter.setState(BaseRecyclerAdapter.STATE_HIDE, false);
 
         AtomsUtils.configRecyclerView(recyclerView, new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(adapter);
@@ -113,7 +123,6 @@ public class GirlFragment extends BaseFragment<GirlPresenter> implements GirlCon
         refreshLayout.setRefreshing(false);
         if (isRefresh) {
             AtomsUtils.makeText(getActivity(), "刷新失败");
-
         } else {
             adapter.setState(BaseRecyclerAdapter.STATE_LOAD_ERROR, true);
         }
@@ -127,5 +136,10 @@ public class GirlFragment extends BaseFragment<GirlPresenter> implements GirlCon
     @Override
     public void onLoadMore() {
         mPresenter.getGankData(false);
+    }
+
+    @Override
+    public Activity getFragmentActivity() {
+        return getActivity();
     }
 }
