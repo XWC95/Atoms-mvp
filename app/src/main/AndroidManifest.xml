@@ -10,10 +10,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <meta-data
-            android:name="com.vea.atoms.mvp.demo.app.GlobalConfiguration"
-            android:value="ConfigModule" />
+        android:theme="@style/public_AppTheme">
+
         <!--
        每个业务组件需要声明两个 ConfigModule, CommonSDK 的 ConfigModule 和 业务组件自己的 ConfigModule
        CommonSDK 的 ConfigModule 含有有每个组件都可共用的配置信息, 业务组件自己的 ConfigModule 含有自己独有的配置
@@ -22,6 +20,9 @@
         -->
         <meta-data
             android:name="com.vea.atoms.mvp.commonsdk.core.GlobalConfiguration"
+            android:value="ConfigModule" />
+        <meta-data
+            android:name="com.vea.atoms.mvp.demo.app.GlobalConfiguration"
             android:value="ConfigModule" />
 
         <activity

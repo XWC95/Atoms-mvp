@@ -101,7 +101,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
                 else
                     throw new IllegalArgumentException("you have to impl the interface when using this viewType");
             case VIEW_TYPE_FOOTER:
-                return new FooterViewHolder(mInflater.inflate(R.layout.recycler_footer_view, parent, false));
+                return new FooterViewHolder(mInflater.inflate(R.layout.public_recycler_footer_view, parent, false));
             default:
                 final RecyclerView.ViewHolder holder = onCreateDefaultViewHolder(parent, viewType);
                 if (holder != null) {

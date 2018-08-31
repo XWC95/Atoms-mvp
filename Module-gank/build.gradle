@@ -1,4 +1,8 @@
-apply plugin: 'com.android.library'
+if (isRunGankModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 27
@@ -36,6 +40,19 @@ android {
     }
 
     resourcePrefix "gank_" //给 Module 内的资源名增加前缀, 避免资源名冲突
+
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            if (isRunGankModule.toBoolean()) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -47,11 +64,25 @@ dependencies {
     api project(':CommonSDK')
     api project(":CommonService")
 
-    compileOnly "com.alibaba:arouter-compiler:1.1.4"
-    compileOnly "com.jakewharton:butterknife-compiler:8.8.1"
-    compileOnly 'com.google.dagger:dagger-compiler:2.15'
 
-    compileOnly 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    compileOnly 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    if (isRunGankModule.toBoolean()) {
+
+        annotationProcessor "com.alibaba:arouter-compiler:1.1.4"
+        annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
+        annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
+
+        debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+        releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+
+    } else {
+        compileOnly "com.alibaba:arouter-compiler:1.1.4"
+        compileOnly "com.jakewharton:butterknife-compiler:8.8.1"
+        compileOnly 'com.google.dagger:dagger-compiler:2.15'
+
+        compileOnly 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+        compileOnly 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    }
+
 
 }
