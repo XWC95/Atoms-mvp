@@ -134,13 +134,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         switch (view.getId()) {
             case R.id.image_mouth:
                 if (adapter.getItems() != null && adapter.getItems().size() > 10) {
-
-                    IUserService provider = ARouter.getInstance().navigation(IUserService.class);
-                    provider.setAvatar_url(adapter.getItem(0).getAvatarUrl());
-                    provider.setId(adapter.getItem(0).getId());
-                    provider.setLogin(adapter.getItem(0).getLogin());
-
-
                     /**
                      * 展示组件之间数据传递
                      * 一般情况下并不需要传递整个user对象，如果只需要某个key，name
@@ -148,6 +141,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                      * 可以说是我无意中的发现，也是多次失败之后得到的。
                      *
                      */
+                    IUserService provider = ARouter.getInstance().navigation(IUserService.class);
+                    provider.setAvatar_url(adapter.getItem(0).getAvatarUrl());
+                    provider.setId(adapter.getItem(0).getId());
+                    provider.setLogin(adapter.getItem(0).getLogin());
+
                     ARouter.getInstance()
                         .build(RouterHub.GANK_MAIN_ACTIVITY)
                         .setProvider(provider)

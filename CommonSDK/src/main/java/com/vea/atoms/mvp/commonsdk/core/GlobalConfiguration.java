@@ -29,7 +29,6 @@ import com.vea.atoms.mvp.integration.ConfigModule;
 import com.vea.atoms.mvp.utils.AtomsUtils;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -37,7 +36,6 @@ import butterknife.ButterKnife;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
-import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;

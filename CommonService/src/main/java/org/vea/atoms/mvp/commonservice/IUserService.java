@@ -10,7 +10,6 @@ import com.alibaba.android.arouter.facade.template.IProvider;
  * ================================================
  */
 public interface IUserService extends IProvider {
-
     String getAvatarUrl();
 
     int getId();
