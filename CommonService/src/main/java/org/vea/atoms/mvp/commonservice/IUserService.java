@@ -4,6 +4,7 @@ import com.alibaba.android.arouter.facade.template.IProvider;
 
 /**
  * ================================================
+ * 向外提供数据传递接口服务
  * <p>
  * Created by Vea on 2018/8/30.
  * ================================================
