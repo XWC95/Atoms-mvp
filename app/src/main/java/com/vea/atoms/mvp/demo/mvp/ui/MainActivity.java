@@ -19,6 +19,9 @@ import com.vea.atoms.mvp.demo.R;
 import com.vea.atoms.mvp.demo.di.component.DaggerDemoComponent;
 import com.vea.atoms.mvp.demo.mvp.adapter.ManListAdapter;
 import com.vea.atoms.mvp.demo.mvp.contract.MainContract;
+
+import org.vea.atoms.mvp.commonservice.IUserService;
+
 import com.vea.atoms.mvp.demo.mvp.model.entity.User;
 import com.vea.atoms.mvp.demo.mvp.presenter.MainPresenter;
 import com.vea.atoms.mvp.di.component.AppComponent;
@@ -28,13 +31,19 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+/**
+ * ================================================
+ *  首页Activity，展示图片
+ *
+ * Created by Vea on 2018/8/23.
+ * ================================================
+ */
 @Route(path = RouterHub.APP_MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View, RecyclerRefreshLayout.SuperRefreshLayoutListener {
 
     private ManListAdapter adapter;
 
     private IBaseShowItemList<User> baseShowItemList;
-
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -60,11 +69,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
+        ARouter.getInstance().inject(this);
 
         initRecycleView();
         initRefreshLayout();
-
-
     }
 
     /**
@@ -125,10 +133,27 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.image_mouth:
-                ARouter.getInstance().build(RouterHub.GANK_MAIN_ACTIVITY).navigation();
+                if (adapter.getItems() != null && adapter.getItems().size() > 10) {
+
+                    IUserService provider = ARouter.getInstance().navigation(IUserService.class);
+                    provider.setAvatar_url(adapter.getItem(0).getAvatarUrl());
+                    provider.setId(adapter.getItem(0).getId());
+                    provider.setLogin(adapter.getItem(0).getLogin());
+
+
+                    /**
+                     * 展示组件之间数据传递
+                     * 一般情况下并不需要传递整个user对象，如果只需要某个key，name
+                     * 只需设置withString(k,v)即可。setProvider()这个方法在官方文档上并没有说明，
+                     * 可以说是我无意中的发现，也是多次失败之后得到的。
+                     *
+                     */
+                    ARouter.getInstance()
+                        .build(RouterHub.GANK_MAIN_ACTIVITY)
+                        .setProvider(provider)
+                        .navigation();
+                }
                 break;
         }
     }
-
-
 }

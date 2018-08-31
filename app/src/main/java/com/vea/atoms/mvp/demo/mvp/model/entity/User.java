@@ -15,6 +15,12 @@
  */
 package com.vea.atoms.mvp.demo.mvp.model.entity;
 
+import android.content.Context;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+
+import org.vea.atoms.mvp.commonservice.IUserService;
+
 /**
  * ================================================
  * User 实体类
@@ -22,32 +28,46 @@ package com.vea.atoms.mvp.demo.mvp.model.entity;
  * Created by Vea on 04/09/2016 17:14
  * ================================================
  */
-public class User {
-    private final int id;
-    private final String login;
-    private final String avatar_url;
+@Route(path = "/app/service/user")
+public class User implements IUserService {
 
-    public User(int id, String login, String avatar_url) {
-        this.id = id;
-        this.login = login;
+    private Context mContext;
+
+    private int id;
+    private String login;
+    private String avatar_url;
+
+
+    public void setAvatar_url(String avatar_url) {
         this.avatar_url = avatar_url;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    @Override
     public String getAvatarUrl() {
         if (avatar_url.isEmpty()) return avatar_url;
         return avatar_url.split("\\?")[0];
     }
 
-
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public String getLogin() {
         return login;
     }
 
-    @Override public String toString() {
-        return "id -> " + id + " login -> " + login;
+    @Override
+    public void init(Context context) {
+        mContext = context;
     }
 }
