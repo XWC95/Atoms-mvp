@@ -68,6 +68,7 @@ public class GirlFragment extends BaseFragment<GirlPresenter> implements GirlCon
 
     @Override
     protected void setupFragmentComponent(AppComponent appComponent) {
+        
         DaggerGankComponent
             .builder()
             .appComponent(appComponent)
@@ -92,8 +93,6 @@ public class GirlFragment extends BaseFragment<GirlPresenter> implements GirlCon
      * 初始化RecyclerView
      */
     private void initRecycleView() {
-//        adapter = new GirlListAdapter(getActivity());
-//        adapter.setState(BaseRecyclerAdapter.STATE_HIDE, false);
 
         AtomsUtils.configRecyclerView(recyclerView, new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(adapter);

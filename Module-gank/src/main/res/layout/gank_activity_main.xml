@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:background="#663366"
         app:tabTextAppearance="@style/gank_TabLayoutTextStyle"
-        app:tabIndicatorColor="#663366"
         app:tabSelectedTextColor="@android:color/white" />
 
     <android.support.v4.view.ViewPager

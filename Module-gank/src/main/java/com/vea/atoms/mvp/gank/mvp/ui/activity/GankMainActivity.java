@@ -18,18 +18,31 @@ package com.vea.atoms.mvp.gank.mvp.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.vea.atoms.mvp.base.BaseActivity;
-import com.vea.atoms.mvp.base.ViewPagerAdapterFragment;
+import com.vea.atoms.mvp.commonsdk.adapter.ViewPagerAdapterFragment;
 import com.vea.atoms.mvp.commonsdk.core.RouterHub;
 import com.vea.atoms.mvp.gank.R;
 import com.vea.atoms.mvp.gank.R2;
 import com.vea.atoms.mvp.gank.mvp.ui.fragment.GirlFragment;
 
-import butterknife.BindView;
+import org.vea.atoms.mvp.commonservice.IUserService;
 
+import butterknife.BindView;
+import timber.log.Timber;
+
+/**
+ * ================================================
+ * 承载{@link GirlFragment}
+ * <p>
+ * Created by Vea on 2016/11/24
+ * ================================================
+ */
 @Route(path = RouterHub.GANK_MAIN_ACTIVITY)
 public class GankMainActivity extends BaseActivity {
 
@@ -39,6 +52,9 @@ public class GankMainActivity extends BaseActivity {
     @BindView(R2.id.viewpager)
     ViewPager viewpager;
 
+    @Autowired
+    IUserService iUser;
+
     @Override
     protected int getLayoutId() {
         return R.layout.gank_activity_main;
@@ -46,10 +62,17 @@ public class GankMainActivity extends BaseActivity {
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
+        ARouter.getInstance().inject(this);
 
         mAdapter = new ViewPagerAdapterFragment(getSupportFragmentManager(), this);
         mAdapter.addTab("福利", "tag", GirlFragment.class, null);
         viewpager.setAdapter(mAdapter);
         tablayout.setupWithViewPager(viewpager);
+
+
+        // 打印组件的输出传递
+        if (iUser != null) {
+            Timber.d("--------id:" + iUser.getId() + "----------AvatarUrl:" + iUser.getAvatarUrl() + "----------Login:" + iUser.getLogin());
+        }
     }
 }

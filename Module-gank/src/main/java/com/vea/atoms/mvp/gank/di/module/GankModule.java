@@ -15,16 +15,29 @@
  */
 package com.vea.atoms.mvp.gank.di.module;
 
+import com.vea.atoms.mvp.commonsdk.adapter.BaseRecyclerAdapter;
+import com.vea.atoms.mvp.di.scope.ActivityScope;
+import com.vea.atoms.mvp.gank.mvp.contract.GirlContract;
+import com.vea.atoms.mvp.gank.mvp.ui.adapter.GirlListAdapter;
+
 import dagger.Module;
+import dagger.Provides;
 
 /**
  * ================================================
  * 展示 Module 的用法
- *
+ * <p>
  * Created by Vea on 09/04/2016 11:10
  * ================================================
  */
 @Module
 public class GankModule {
 
+    @ActivityScope
+    @Provides
+    static GirlListAdapter provideListAdapter(GirlContract.View view) {
+        GirlListAdapter adapter = new GirlListAdapter(view.getFragmentActivity());
+        adapter.setState(BaseRecyclerAdapter.STATE_HIDE, false);
+        return adapter;
+    }
 }

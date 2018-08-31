@@ -45,6 +45,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     api project(':CommonSDK')
+    api project(":CommonService")
 
     compileOnly "com.alibaba:arouter-compiler:1.1.4"
     compileOnly "com.jakewharton:butterknife-compiler:8.8.1"

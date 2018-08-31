@@ -15,6 +15,8 @@
  */
 package com.vea.atoms.mvp.gank.mvp.contract;
 
+import android.app.Activity;
+
 import com.vea.atoms.mvp.base.IView;
 import com.vea.atoms.mvp.base.IPresenter;
 import com.vea.atoms.mvp.gank.mvp.model.entity.GankItemBean;
@@ -39,10 +41,11 @@ public interface GirlContract {
         void getGankDataSuccess(List<GankItemBean> mList, boolean isRefresh);
 
         /**
-         *
          * @param isRefresh 刷新为true，加载更多为false
          */
         void getGankDataFailure(boolean isRefresh);
+
+        Activity getFragmentActivity();
     }
 
     interface Presenter extends IPresenter<View> {

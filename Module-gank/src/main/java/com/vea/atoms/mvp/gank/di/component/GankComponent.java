@@ -17,15 +17,18 @@ package com.vea.atoms.mvp.gank.di.component;
 
 import com.vea.atoms.mvp.di.component.AppComponent;
 import com.vea.atoms.mvp.di.scope.ActivityScope;
+import com.vea.atoms.mvp.di.scope.FragmentScope;
 import com.vea.atoms.mvp.gank.di.module.GankModule;
+import com.vea.atoms.mvp.gank.mvp.contract.GirlContract;
 import com.vea.atoms.mvp.gank.mvp.ui.fragment.GirlFragment;
 
+import dagger.BindsInstance;
 import dagger.Component;
 
 /**
  * ================================================
  * 展示 Component 的用法
- *
+ * <p>
  * Created by Vea on 09/04/2016 11:17
  * ================================================
  */
@@ -34,4 +37,14 @@ import dagger.Component;
 public interface GankComponent {
 
     void inject(GirlFragment activity);
+
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        GankComponent.Builder view(GirlContract.View view);
+
+        GankComponent.Builder appComponent(AppComponent appComponent);
+
+        GankComponent build();
+    }
 }
