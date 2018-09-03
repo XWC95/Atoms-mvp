@@ -15,9 +15,7 @@
  */
 package com.vea.atoms.mvp.demo.mvp.model.entity;
 
-import android.content.Context;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 
 import org.vea.atoms.mvp.commonservice.IUserService;
 
@@ -28,19 +26,12 @@ import org.vea.atoms.mvp.commonservice.IUserService;
  * Created by Vea on 04/09/2016 17:14
  * ================================================
  */
-@Route(path = "/app/service/user")
 public class User implements IUserService {
-
-    private Context mContext;
 
     private int id;
     private String login;
     private String avatar_url;
 
-
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
-    }
 
     public void setId(int id) {
         this.id = id;
@@ -52,8 +43,7 @@ public class User implements IUserService {
 
     @Override
     public String getAvatarUrl() {
-        if (avatar_url.isEmpty()) return avatar_url;
-        return avatar_url.split("\\?")[0];
+        return avatar_url;
     }
 
     @Override
@@ -67,7 +57,7 @@ public class User implements IUserService {
     }
 
     @Override
-    public void init(Context context) {
-        mContext = context;
+    public void setAvatarUrl(String avatar_url) {
+        this.avatar_url = avatar_url;
     }
 }

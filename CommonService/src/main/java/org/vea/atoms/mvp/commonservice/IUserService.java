@@ -1,6 +1,5 @@
 package org.vea.atoms.mvp.commonservice;
 
-import com.alibaba.android.arouter.facade.template.IProvider;
 
 /**
  * ================================================
@@ -9,16 +8,11 @@ import com.alibaba.android.arouter.facade.template.IProvider;
  * Created by Vea on 2018/8/30.
  * ================================================
  */
-public interface IUserService extends IProvider {
+public interface IUserService {
     String getAvatarUrl();
-
     int getId();
-
     String getLogin();
-
-    void setAvatar_url(String avatar_url);
-
+    void setAvatarUrl(String avatar_url);
     void setId(int id);
-
     void setLogin(String login);
 }

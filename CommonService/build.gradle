@@ -31,6 +31,5 @@ android {
 
 dependencies {
 
-    compileOnly "com.alibaba:arouter-api:1.3.1"
 
 }

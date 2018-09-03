@@ -53,7 +53,7 @@ public class GankMainActivity extends BaseActivity {
     ViewPager viewpager;
 
     @Autowired
-    IUserService iUser;
+    IUserService obj;
 
     @Override
     protected int getLayoutId() {
@@ -70,9 +70,9 @@ public class GankMainActivity extends BaseActivity {
         tablayout.setupWithViewPager(viewpager);
 
 
-        // 打印组件的输出传递
-        if (iUser != null) {
-            Timber.d("--------id:" + iUser.getId() + "----------AvatarUrl:" + iUser.getAvatarUrl() + "----------Login:" + iUser.getLogin());
+        // 打印组件的数据传递
+        if (obj != null) {
+            Timber.d("--------id:" + obj.getId() + "----------AvatarUrl:" + obj.getAvatarUrl() + "----------Login:" + obj.getLogin());
         }
     }
 }

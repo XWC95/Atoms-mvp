@@ -20,7 +20,6 @@ import com.vea.atoms.mvp.demo.di.component.DaggerDemoComponent;
 import com.vea.atoms.mvp.demo.mvp.adapter.ManListAdapter;
 import com.vea.atoms.mvp.demo.mvp.contract.MainContract;
 
-import org.vea.atoms.mvp.commonservice.IUserService;
 
 import com.vea.atoms.mvp.demo.mvp.model.entity.User;
 import com.vea.atoms.mvp.demo.mvp.presenter.MainPresenter;
@@ -134,21 +133,16 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         switch (view.getId()) {
             case R.id.image_mouth:
                 if (adapter.getItems() != null && adapter.getItems().size() > 10) {
+
                     /**
                      * 展示组件之间数据传递
                      * 一般情况下并不需要传递整个user对象，如果只需要某个key，name
-                     * 只需设置withString(k,v)即可。setProvider()这个方法在官方文档上并没有说明，
-                     * 可以说是我无意中的发现，也是多次失败之后得到的。
-                     *
+                     * 只需设置withString(k,v)即可。 传递对象可使用withObject
                      */
-                    IUserService provider = ARouter.getInstance().navigation(IUserService.class);
-                    provider.setAvatar_url(adapter.getItem(0).getAvatarUrl());
-                    provider.setId(adapter.getItem(0).getId());
-                    provider.setLogin(adapter.getItem(0).getLogin());
-
+                    User item = adapter.getItem(0);
                     ARouter.getInstance()
                         .build(RouterHub.GANK_MAIN_ACTIVITY)
-                        .setProvider(provider)
+                        .withObject("obj",item)
                         .navigation();
                 }
                 break;
