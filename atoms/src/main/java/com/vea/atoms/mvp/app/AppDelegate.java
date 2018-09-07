@@ -80,7 +80,7 @@ public class AppDelegate implements IApp, AppLifecycles {
             .application(mApplication)//提供application
             .globalConfigModule(getGlobalConfigModule(mApplication, mModules))//全局配置
             .build();
-        mAppComponent.injectDeleagate(this);
+        mAppComponent.injectDelegate(this);
 
 
         //执行框架外部, 开发者扩展的 App onCreate 逻辑

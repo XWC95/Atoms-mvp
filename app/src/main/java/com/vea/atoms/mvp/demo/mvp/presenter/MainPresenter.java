@@ -17,11 +17,10 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
-
 /**
  * ================================================
- *  首页 Presenter
- *
+ * 首页 Presenter
+ * <p>
  * Created by Vea on 2018/8/23.
  * ================================================
  */
@@ -70,5 +69,6 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
 
                 }
             });
+
     }
 }

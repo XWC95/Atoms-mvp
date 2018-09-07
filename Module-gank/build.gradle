@@ -10,10 +10,10 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
+        versionCode Integer.parseInt(APP_CODE)
+        versionName APP_VERSION
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -67,21 +67,21 @@ dependencies {
 
     if (isRunGankModule.toBoolean()) {
 
-        annotationProcessor "com.alibaba:arouter-compiler:1.1.4"
-        annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
-        annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
+        annotationProcessor "com.alibaba:arouter-compiler:$arouter_compiler"
+        annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife"
+        annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
-        debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-        releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+        debugImplementation "com.squareup.leakcanary:leakcanary-android:1.5.4"
+        releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.5.4"
 
 
     } else {
-        compileOnly "com.alibaba:arouter-compiler:1.1.4"
-        compileOnly "com.jakewharton:butterknife-compiler:8.8.1"
-        compileOnly 'com.google.dagger:dagger-compiler:2.15'
+        compileOnly "com.alibaba:arouter-compiler:$arouter_compiler"
+        compileOnly "com.jakewharton:butterknife-compiler:$butterknife"
+        compileOnly "com.google.dagger:dagger-compiler:$dagger_version"
 
-        compileOnly 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-        compileOnly 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+        compileOnly "com.squareup.leakcanary:leakcanary-android:1.5.4"
+        compileOnly "com.squareup.leakcanary:leakcanary-android-no-op:1.5.4"
     }
 
 

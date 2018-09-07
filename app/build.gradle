@@ -4,11 +4,10 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.vea.atoms.mvp.demo"
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
+        versionCode Integer.parseInt(APP_CODE)
+        versionName APP_VERSION
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [moduleName: project.getName()]
@@ -48,9 +47,9 @@ dependencies {
     implementation project(':CommonSDK')
     implementation project(":CommonService")
 
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
-    annotationProcessor "com.alibaba:arouter-compiler:1.1.4"
-    annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    annotationProcessor "com.alibaba:arouter-compiler:$arouter_compiler"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife"
 
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'

@@ -62,7 +62,7 @@ public interface AppComponent  {
     //用于创建框架所需缓存对象的工厂
     Cache.Factory cacheFactory();
 
-    void injectDeleagate(AppDelegate delegate);
+    void injectDelegate(AppDelegate delegate);
 
     @Component.Builder
     interface Builder {

@@ -6,11 +6,10 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
+        versionCode Integer.parseInt(APP_CODE)
+        versionName APP_VERSION
 
     }
 
@@ -34,7 +33,7 @@ dependencies {
 
     api project(':atoms')
 
-    api "com.alibaba:arouter-api:1.3.1"
+    api "com.alibaba:arouter-api:$arouter_api"
 
     // 如果想要同时支持多个BaseUrl ，否则可以去掉
     api "me.jessyan:retrofit-url-manager:1.4.0"
