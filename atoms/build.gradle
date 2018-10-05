@@ -1,13 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
-
-
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
 
     defaultConfig {
-        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
-        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode 1
         versionName APP_VERSION
     }
@@ -28,26 +26,24 @@ android {
 
 dependencies {
 
-    api "com.android.support:appcompat-v7:$support_version"
-    api "com.android.support:support-v4:$support_version"
-    api "com.android.support:design:$support_version"
-    api "com.android.support:recyclerview-v7:$support_version"
-    api "com.android.support:cardview-v7:$support_version"
-    api "com.android.support.constraint:constraint-layout:$constraint_layout"
+    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["design"]
+    api rootProject.ext.dependencies["support-v4"]
+    api rootProject.ext.dependencies["recyclerview-v7"]
+    api rootProject.ext.dependencies["cardview-v7"]
+    api rootProject.ext.dependencies["constraintLayout"]
 
+    api rootProject.ext.dependencies["rxjava2"]
+    api rootProject.ext.dependencies["rxandroid2"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["retrofit-converter-gson"]
+    api rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
 
+    api rootProject.ext.dependencies["butterknife"]
 
+    api rootProject.ext.dependencies["dagger2"]
+    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
 
-    api "io.reactivex.rxjava2:rxjava:$rx_java"
-    api "io.reactivex.rxjava2:rxandroid:$rx_android"
-    api "com.squareup.retrofit2:retrofit:$retrofit_version"
-    api "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    api "com.jakewharton:butterknife:$butterknife"
-    api "com.google.dagger:dagger:$dagger_version"
-
-
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
-    api "com.jakewharton.timber:timber:4.7.0"
+    api rootProject.ext.dependencies["timber"]
 
 }

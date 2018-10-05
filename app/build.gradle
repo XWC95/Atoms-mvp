@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     defaultConfig {
         applicationId "com.vea.atoms.mvp.demo"
-        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
-        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode Integer.parseInt(APP_CODE)
         versionName APP_VERSION
         javaCompileOptions {
@@ -47,12 +47,11 @@ dependencies {
     implementation project(':CommonSDK')
     implementation project(":CommonService")
 
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
-    annotationProcessor "com.alibaba:arouter-compiler:$arouter_compiler"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife"
+    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 
-
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    debugImplementation rootProject.ext.dependencies["canary-debug"]
+    releaseImplementation rootProject.ext.dependencies["canary-release"]
 
 }
