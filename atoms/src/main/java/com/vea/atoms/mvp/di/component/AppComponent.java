@@ -19,10 +19,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.vea.atoms.mvp.app.AppDelegate;
-import com.vea.atoms.mvp.app.BaseApplication;
-import com.vea.atoms.mvp.di.modul.AppModule;
-import com.vea.atoms.mvp.di.modul.ClientModule;
-import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
+import com.vea.atoms.mvp.di.module.AppModule;
+import com.vea.atoms.mvp.di.module.ClientModule;
+import com.vea.atoms.mvp.di.module.GlobalConfigModule;
 import com.vea.atoms.mvp.integration.IRepositoryManager;
 import com.vea.atoms.mvp.integration.cache.Cache;
 import com.vea.atoms.mvp.utils.AtomsUtils;

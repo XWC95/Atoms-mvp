@@ -17,7 +17,7 @@ package com.vea.atoms.mvp.http.log;
 
 import android.support.annotation.Nullable;
 
-import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
+import com.vea.atoms.mvp.di.module.GlobalConfigModule;
 import com.vea.atoms.mvp.http.GlobalHttpHandler;
 import com.vea.atoms.mvp.utils.CharacterHandler;
 import com.vea.atoms.mvp.utils.ZipHelper;

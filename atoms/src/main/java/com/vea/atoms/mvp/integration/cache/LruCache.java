@@ -18,7 +18,7 @@ package com.vea.atoms.mvp.integration.cache;
 import android.app.Application;
 import android.support.annotation.Nullable;
 
-import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
+import com.vea.atoms.mvp.di.module.GlobalConfigModule;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

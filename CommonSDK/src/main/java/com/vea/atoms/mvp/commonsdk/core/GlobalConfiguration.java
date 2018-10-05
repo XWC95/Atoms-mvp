@@ -23,7 +23,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.vea.atoms.mvp.app.AppLifecycles;
 import com.vea.atoms.mvp.commonsdk.BuildConfig;
 import com.vea.atoms.mvp.commonsdk.http.Api;
-import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
+import com.vea.atoms.mvp.di.module.GlobalConfigModule;
 import com.vea.atoms.mvp.http.log.RequestInterceptor;
 import com.vea.atoms.mvp.integration.ConfigModule;
 import com.vea.atoms.mvp.utils.AtomsUtils;

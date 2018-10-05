@@ -13,22 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.vea.atoms.mvp.di.modul;
+package com.vea.atoms.mvp.di.module;
 
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.Nullable;
 
-import com.google.gson.Gson;
 import com.vea.atoms.mvp.http.GlobalHttpHandler;
 import com.vea.atoms.mvp.http.log.RequestInterceptor;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Binds;

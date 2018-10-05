@@ -18,7 +18,7 @@ package com.vea.atoms.mvp.integration;
 import android.content.Context;
 
 import com.vea.atoms.mvp.app.AppLifecycles;
-import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
+import com.vea.atoms.mvp.di.module.GlobalConfigModule;
 
 import java.util.List;
 
