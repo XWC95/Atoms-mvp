@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
@@ -74,14 +75,51 @@ public class AtomsUtils {
     }
 
     /**
-     * dip转pix
+     * dp 转 px
      *
-     * @param dpValue
-     * @return
+     * @param context {@link Context}
+     * @param dpValue {@code dpValue}
+     * @return {@code pxValue}
      */
-    public static int dip2px(Context context, float dpValue) {
+    public static int dip2px(@NonNull Context context, float dpValue) {
         final float scale = getResources(context).getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    /**
+     * px 转 dp
+     *
+     * @param context {@link Context}
+     * @param pxValue {@code pxValue}
+     * @return {@code dpValue}
+     */
+    public static int pix2dip(@NonNull Context context, int pxValue) {
+        final float scale = getResources(context).getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
+    /**
+     * sp 转 px
+     *
+     * @param context {@link Context}
+     * @param spValue {@code spValue}
+     * @return {@code pxValue}
+     */
+    public static int sp2px(@NonNull Context context, float spValue) {
+        final float fontScale = getResources(context).getDisplayMetrics().scaledDensity;
+        return (int) (spValue * fontScale + 0.5f);
+    }
+
+    /**
+     * px 转 sp
+     *
+     * @param context {@link Context}
+     * @param pxValue {@code pxValue}
+     * @return {@code spValue}
+     */
+    public static int px2sp(@NonNull Context context, float pxValue) {
+        final float fontScale = getResources(context).getDisplayMetrics().scaledDensity;
+        return (int) (pxValue / fontScale + 0.5f);
     }
 
     /**
@@ -96,14 +134,6 @@ public class AtomsUtils {
      */
     public static String[] getStringArray(Context context, int id) {
         return getResources(context).getStringArray(id);
-    }
-
-    /**
-     * pix转dip
-     */
-    public static int pix2dip(Context context, int pix) {
-        final float densityDpi = getResources(context).getDisplayMetrics().density;
-        return (int) (pix / densityDpi + 0.5f);
     }
 
     /**
