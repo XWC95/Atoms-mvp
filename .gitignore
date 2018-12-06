@@ -6,3 +6,9 @@
 /build
 /captures
 .externalNativeBuild
+
+# VSCode
+.classpath
+.project
+.settings/
+.vscode/

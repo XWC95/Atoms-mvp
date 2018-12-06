@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -36,6 +37,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // 使用 runtimeOnly 依赖业务组件, 可实现业务组件的代码在编译时对宿主 App 不可见
     if (!isRunGankModule.toBoolean()) {
