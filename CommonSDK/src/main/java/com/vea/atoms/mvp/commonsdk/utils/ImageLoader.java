@@ -15,11 +15,10 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.security.MessageDigest;
 
-
 /**
  * ================================================
  * Glide 图片加载辅助类,支持圆形图片
- *
+ * <p>
  * Created by Vea on 30/03/2018 17:16
  * ================================================
  */
@@ -28,40 +27,46 @@ public class ImageLoader {
     private ImageLoader() {
     }
 
-    public static void loadImage(Context context, ImageView view, String url) {
+    public static void load(Context context, ImageView view, String url) {
         Glide.with(context).load(url).into(view);
+    }
+
+    public static void load(Context context, ImageView view, int drawableRes) {
+        Glide.with(context).load(drawableRes).into(view);
     }
 
     /**
      * @param placeholder 加载中的图片
      * @param error       加载失败显示的图片
      */
-    public static void loadImage(Context context, ImageView view, String url, int placeholder, int error) {
+    public static void load(Context context, ImageView view, String url, int placeholder, int error) {
         RequestOptions options = new RequestOptions()
-            .centerCrop()
-            .placeholder(placeholder)
-            .error(error)
-            .priority(Priority.HIGH);
+                .centerCrop()
+                .placeholder(placeholder)
+                .error(error)
+                .priority(Priority.HIGH);
 
         Glide.with(context).load(url).apply(options).into(view);
     }
 
     /**
-     *  加载圆形图片
+     * 加载圆形图片
+     *
      * @param context
      * @param view
      * @param url
      */
     public static void loadCircleImage(Context context, ImageView view, String url) {
         RequestOptions options = new RequestOptions()
-            .centerCrop()
-            .priority(Priority.HIGH)
-            .transform(new GlideCircleTransform());
+                .centerCrop()
+                .priority(Priority.HIGH)
+                .transform(new GlideCircleTransform());
         Glide.with(context).load(url).apply(options).into(view);
     }
 
     /**
-     *  加载圆形图片
+     * 加载圆形图片
+     *
      * @param context
      * @param view
      * @param url
@@ -69,11 +74,11 @@ public class ImageLoader {
      */
     public static void loadCircleImage(Context context, ImageView view, String url, int error) {
         RequestOptions options = new RequestOptions()
-            .centerCrop()
-            .placeholder(error)
-            .error(error)
-            .priority(Priority.HIGH)
-            .transform(new GlideCircleTransform());
+                .centerCrop()
+                .placeholder(error)
+                .error(error)
+                .priority(Priority.HIGH)
+                .transform(new GlideCircleTransform());
         Glide.with(context).load(url).apply(options).into(view);
     }
 
@@ -85,7 +90,7 @@ public class ImageLoader {
 
         @Override
         public Bitmap transform(BitmapPool pool, Bitmap toTransform,
-            int outWidth, int outHeight) {
+                                int outWidth, int outHeight) {
             return circleCrop(pool, toTransform);
         }
 
