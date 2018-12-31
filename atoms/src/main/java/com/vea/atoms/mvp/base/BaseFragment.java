@@ -48,10 +48,6 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
     protected T mPresenter;
 
     private Unbinder mUnBinder;
-    /**
-     * 控件是否已经初始化
-     */
-    private boolean isCreateView;
 
     private BaseActivity mBaseActivity;
 
@@ -84,11 +80,6 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
             EventBus.getDefault().register(this);
         }
         initData(savedInstanceState);
-
-        isCreateView = true;
-        if (getUserVisibleHint()) {
-            initPrepare();
-        }
     }
 
     @Override
@@ -108,31 +99,6 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
             mPresenter = null;
         }
     }
-
-    /**
-     * 此方法在控件初始化前调用，所以不能在此方法中直接操作控件会出现空指针
-     *
-     * @param isVisibleToUser
-     */
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            initPrepare();
-        }
-    }
-
-    private synchronized void initPrepare() {
-        if (!isCreateView) {
-            return;
-        }
-        onUserVisible();
-    }
-
-    /**
-     * 当视图初始化，并且对用户可见的时候去真正的加载数据
-     */
-    protected abstract void onUserVisible();
 
     protected void setupFragmentComponent(AppComponent appComponent) {
 
