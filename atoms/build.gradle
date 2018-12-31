@@ -47,5 +47,6 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
 
     api rootProject.ext.dependencies["timber"]
+    api rootProject.ext.dependencies["multidex"]
 
 }

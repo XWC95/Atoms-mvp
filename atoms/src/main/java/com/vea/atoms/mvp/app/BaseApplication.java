@@ -15,9 +15,12 @@
  */
 package com.vea.atoms.mvp.app;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.multidex.MultiDex;
 
 import com.vea.atoms.mvp.di.component.AppComponent;
 import com.vea.atoms.mvp.utils.AtomsUtils;
@@ -36,22 +39,77 @@ public class BaseApplication extends Application implements IApp {
 
     private AppLifecycles mAppDelegate;
 
+    private ActivityLifecycleCallbacks mActivityLifecycleCallbacks;
+
+    private static BaseApplication mApplication;
+
+    public static BaseApplication getInstance() {
+        return mApplication;
+    }
+
+    public static void setApplication(BaseApplication mApplication) {
+        BaseApplication.mApplication = mApplication;
+    }
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+        MultiDex.install(base);
 
-        if (mAppDelegate == null)
+        if (mAppDelegate == null) {
             this.mAppDelegate = new AppDelegate(base);
+        }
         this.mAppDelegate.attachBaseContext(this, base);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        if (mAppDelegate != null)
+        setApplication(this);
+        if (mAppDelegate != null) {
             this.mAppDelegate.onCreate(this);
+        }
 
         Timber.d("BaseApplication#onCreate");
+
+        mActivityLifecycleCallbacks = new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle bundle) {
+                ActivityManager.getAppManager().addActivity(activity);
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+                ActivityManager.getAppManager().removeActivity(activity);
+            }
+        };
+
+        registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks);
     }
 
     /**
@@ -62,6 +120,7 @@ public class BaseApplication extends Application implements IApp {
         super.onTerminate();
         if (mAppDelegate != null)
             this.mAppDelegate.onTerminate(this);
+        unregisterActivityLifecycleCallbacks(mActivityLifecycleCallbacks);
     }
 
     /**
