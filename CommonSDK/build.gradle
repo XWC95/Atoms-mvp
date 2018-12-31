@@ -43,4 +43,6 @@ dependencies {
     api rootProject.ext.dependencies["permission"]
 
     api rootProject.ext.dependencies["fastjson"]
+
+    api rootProject.ext.dependencies["okhttp-logging"]
 }
