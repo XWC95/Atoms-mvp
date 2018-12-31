@@ -28,6 +28,8 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    def appDependencies = rootProject.ext.dependencies
+
     api rootProject.ext.dependencies["appcompat-v7"]
     api rootProject.ext.dependencies["design"]
     api rootProject.ext.dependencies["support-v4"]
@@ -48,5 +50,6 @@ dependencies {
 
     api rootProject.ext.dependencies["timber"]
     api rootProject.ext.dependencies["multidex"]
-
+    api appDependencies["androideventbus"]
+    api appDependencies["avi_loading"]
 }

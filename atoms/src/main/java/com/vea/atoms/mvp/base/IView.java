@@ -18,12 +18,27 @@ package com.vea.atoms.mvp.base;
 /**
  * ================================================
  * 框架要求框架中的每个 View 都需要实现此类, 以满足规范
- *
+ * <p>
  * Created by Vea on 2016/11/24.
  * ================================================
  */
 public interface IView {
 
     void showMessage(String msg);
+
+    /**
+     * 显示加载
+     */
+    void showLoading();
+
+    /**
+     * 隐藏加载
+     */
+    void hideLoading();
+
+    /**
+     * 关闭页面
+     */
+    void closePage();
 
 }

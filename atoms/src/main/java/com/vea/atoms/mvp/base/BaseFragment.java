@@ -15,6 +15,7 @@
  */
 package com.vea.atoms.mvp.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,6 +27,8 @@ import android.widget.Toast;
 
 import com.vea.atoms.mvp.di.component.AppComponent;
 import com.vea.atoms.mvp.utils.AtomsUtils;
+
+import org.simple.eventbus.EventBus;
 
 import javax.inject.Inject;
 
@@ -45,6 +48,22 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
     protected T mPresenter;
 
     private Unbinder mUnBinder;
+    /**
+     * 控件是否已经初始化
+     */
+    private boolean isCreateView;
+
+    private BaseActivity mBaseActivity;
+
+    public BaseActivity getBaseActivity() {
+        return mBaseActivity;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mBaseActivity = (BaseActivity) context;
+    }
 
     @Nullable
     @Override
@@ -53,7 +72,7 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         setupFragmentComponent(AtomsUtils.obtainAppComponentFromContext(getActivity()));
@@ -61,11 +80,22 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
             mPresenter.attachView(this);
         }
         mUnBinder = ButterKnife.bind(this, view);
+        if (useEventBus()) {
+            EventBus.getDefault().register(this);
+        }
         initData(savedInstanceState);
+
+        isCreateView = true;
+        if (getUserVisibleHint()) {
+            initPrepare();
+        }
     }
 
     @Override
     public void onDestroyView() {
+        if (useEventBus()) {
+            EventBus.getDefault().unregister(this);
+        }
         super.onDestroyView();
         mUnBinder.unbind();
     }
@@ -79,8 +109,37 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
         }
     }
 
+    /**
+     * 此方法在控件初始化前调用，所以不能在此方法中直接操作控件会出现空指针
+     *
+     * @param isVisibleToUser
+     */
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            initPrepare();
+        }
+    }
+
+    private synchronized void initPrepare() {
+        if (!isCreateView) {
+            return;
+        }
+        onUserVisible();
+    }
+
+    /**
+     * 当视图初始化，并且对用户可见的时候去真正的加载数据
+     */
+    protected abstract void onUserVisible();
+
     protected void setupFragmentComponent(AppComponent appComponent) {
 
+    }
+
+    protected boolean useEventBus() {
+        return true;
     }
 
     protected abstract int getLayoutId();
@@ -92,5 +151,20 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
         if (getActivity() != null) {
             Toast.makeText(getActivity().getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void showLoading() {
+        mBaseActivity.showLoading();
+    }
+
+    @Override
+    public void hideLoading() {
+        mBaseActivity.hideLoading();
+    }
+
+    @Override
+    public void closePage() {
+
     }
 }

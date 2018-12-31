@@ -67,6 +67,11 @@ public class GirlFragment extends BaseFragment<GirlPresenter> implements GirlCon
     private IBaseShowItemList<GankItemBean> baseShowItemList;
 
     @Override
+    protected void onUserVisible() {
+
+    }
+
+    @Override
     protected void setupFragmentComponent(AppComponent appComponent) {
         
         DaggerGankComponent
