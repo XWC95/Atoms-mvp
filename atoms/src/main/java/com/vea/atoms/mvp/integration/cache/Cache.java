@@ -19,7 +19,7 @@ import android.app.Application;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
+import com.vea.atoms.mvp.di.module.GlobalConfigModule;
 
 import java.util.Set;
 

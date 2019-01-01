@@ -17,7 +17,6 @@ package com.vea.atoms.mvp.commonsdk.core;
 
 import android.content.Context;
 
-
 import com.vea.atoms.mvp.http.GlobalHttpHandler;
 
 import okhttp3.Interceptor;
@@ -43,8 +42,8 @@ public class GlobalHttpHandlerImpl implements GlobalHttpHandler {
      * 重新请求 token, 并重新执行请求
      *
      * @param httpResult 服务器返回的结果 (已被框架自动转换为字符串)
-     * @param chain {@link okhttp3.Interceptor.Chain}
-     * @param response {@link Response}
+     * @param chain      {@link okhttp3.Interceptor.Chain}
+     * @param response   {@link Response}
      * @return
      */
     @Override
@@ -66,7 +65,7 @@ public class GlobalHttpHandlerImpl implements GlobalHttpHandler {
     /**
      * 这里可以在请求服务器之前拿到 {@link Request}, 做一些操作比如给 {@link Request} 统一添加 token 或者 header 以及参数加密等操作
      *
-     * @param chain {@link okhttp3.Interceptor.Chain}
+     * @param chain   {@link okhttp3.Interceptor.Chain}
      * @param request {@link Request}
      * @return
      */

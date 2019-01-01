@@ -51,7 +51,7 @@ public class GirlListAdapter extends BaseRecyclerAdapter<GankItemBean> {
     @Override
     protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, GankItemBean item, int position) {
         ViewHolder h = (ViewHolder) holder;
-        ImageLoader.loadImage(mContext, h.image, item.getUrl());
+        ImageLoader.load(mContext, h.image, item.getUrl());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -16,7 +16,7 @@
 package com.vea.atoms.mvp.http;
 
 
-import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
+import com.vea.atoms.mvp.di.module.GlobalConfigModule;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;

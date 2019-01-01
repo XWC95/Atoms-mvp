@@ -1,13 +1,12 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 26
-
-
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
 
     defaultConfig {
-        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
-        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode Integer.parseInt(APP_CODE)
         versionName APP_VERSION
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -29,6 +28,7 @@ android {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
 }

@@ -19,15 +19,11 @@ import android.content.Context;
 
 import com.vea.atoms.mvp.app.AppDelegate;
 import com.vea.atoms.mvp.app.AppLifecycles;
-import com.vea.atoms.mvp.demo.BuildConfig;
-import com.vea.atoms.mvp.demo.mvp.model.service.DemoService;
-import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
-import com.vea.atoms.mvp.http.log.RequestInterceptor;
+import com.vea.atoms.mvp.di.module.GlobalConfigModule;
 import com.vea.atoms.mvp.integration.ConfigModule;
 import com.vea.atoms.mvp.integration.ManifestParser;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 /**

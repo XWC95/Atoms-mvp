@@ -19,7 +19,7 @@ import android.content.Context;
 
 import com.vea.atoms.mvp.app.AppDelegate;
 import com.vea.atoms.mvp.app.AppLifecycles;
-import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
+import com.vea.atoms.mvp.di.module.GlobalConfigModule;
 import com.vea.atoms.mvp.integration.ConfigModule;
 import com.vea.atoms.mvp.integration.ManifestParser;
 
@@ -50,7 +50,6 @@ public final class GlobalConfiguration implements ConfigModule {
         // 可以根据不同的逻辑添加多个实现类
         lifecycles.add(new AppLifecyclesImpl());
     }
-
 
 
 }

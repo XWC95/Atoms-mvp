@@ -23,7 +23,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.vea.atoms.mvp.app.AppLifecycles;
 import com.vea.atoms.mvp.commonsdk.BuildConfig;
 import com.vea.atoms.mvp.commonsdk.http.Api;
-import com.vea.atoms.mvp.di.modul.GlobalConfigModule;
+import com.vea.atoms.mvp.di.module.GlobalConfigModule;
 import com.vea.atoms.mvp.http.log.RequestInterceptor;
 import com.vea.atoms.mvp.integration.ConfigModule;
 import com.vea.atoms.mvp.utils.AtomsUtils;
@@ -39,13 +39,14 @@ import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import timber.log.Timber;
 
 
 /**
  * ================================================
  * CommonSDK 的 GlobalConfiguration 含有有每个组件都可公用的配置信息, 每个组件的 AndroidManifest 都应该声明此 ConfigModule
- *
+ * <p>
  * Created by Vea on 30/03/2018 17:16
  * ================================================
  */
@@ -55,6 +56,13 @@ public final class GlobalConfiguration implements ConfigModule {
     public void applyOptions(Context context, GlobalConfigModule.Builder builder) {
         if (!BuildConfig.DEBUG) { //Release 时,让框架不再打印 Http 请求和响应的信息
             builder.printHttpLogLevel(RequestInterceptor.Level.NONE);
+        }
+
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        if (BuildConfig.DEBUG) {
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        } else {
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
         }
 
         builder.baseurl(Api.APP_DOMAIN)
@@ -121,42 +129,44 @@ public final class GlobalConfiguration implements ConfigModule {
                 })
                 .okhttpConfiguration((appContext, okhttpBuilder) -> {//这里可以自己自定义配置Okhttp的参数
 //                    okhttpBuilder.sslSocketFactory(); //支持 Https,详情请百度
+                    okhttpBuilder.addInterceptor(loggingInterceptor)
+                    ;
 
                     //让 Retrofit 同时支持多个 BaseUrl 以及动态改变 BaseUrl. 不需要可以删掉。详细使用请方法查看 https://github.com/JessYanCoding/RetrofitUrlManager
                     RetrofitUrlManager.getInstance().with(okhttpBuilder);
                     //cache
-                    Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = chain -> {
+                    Interceptor rewriteCacheControlInterceptor = chain -> {
                         CacheControl.Builder cacheBuilder = new CacheControl.Builder();
                         cacheBuilder.maxAge(0, TimeUnit.SECONDS);
-                        cacheBuilder.maxStale(365,TimeUnit.DAYS);
+                        cacheBuilder.maxStale(365, TimeUnit.DAYS);
                         CacheControl cacheControl = cacheBuilder.build();
                         Request request = chain.request();
-                        if(!AtomsUtils.isNetWorkAvailable(appContext)){
+                        if (!AtomsUtils.isNetWorkAvailable(appContext)) {
                             request = request.newBuilder()
-                                .cacheControl(cacheControl)
-                                .build();
+                                    .cacheControl(cacheControl)
+                                    .build();
                         }
                         Response originalResponse = chain.proceed(request);
                         if (AtomsUtils.isNetWorkAvailable(appContext)) {
                             int maxAge = 0; // read from cache
                             return originalResponse.newBuilder()
-                                .removeHeader("Pragma")
-                                .header("Cache-Control", "public ,max-age=" + maxAge)
-                                .build();
+                                    .removeHeader("Pragma")
+                                    .header("Cache-Control", "public ,max-age=" + maxAge)
+                                    .build();
                         } else {
                             int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
                             return originalResponse.newBuilder()
-                                .removeHeader("Pragma")
-                                .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
-                                .build();
+                                    .removeHeader("Pragma")
+                                    .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+                                    .build();
                         }
                     };
                     //cache url
                     File httpCacheDirectory = new File(appContext.getCacheDir(), "responses");
                     int cacheSize = 10 * 1024 * 1024; // 10 MiB
                     Cache cache = new Cache(httpCacheDirectory, cacheSize);
-                    okhttpBuilder .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
-                        .cache(cache).build();
+                    okhttpBuilder.addInterceptor(rewriteCacheControlInterceptor)
+                            .cache(cache).build();
                 });
     }
 

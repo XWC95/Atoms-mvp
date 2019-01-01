@@ -1,13 +1,12 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 27
-
-
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
 
     defaultConfig {
-        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
-        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode Integer.parseInt(APP_CODE)
         versionName APP_VERSION
 
@@ -30,17 +29,20 @@ android {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     api project(':atoms')
 
-    api "com.alibaba:arouter-api:$arouter_api"
+    api rootProject.ext.dependencies["arouter"]
 
     // 如果想要同时支持多个BaseUrl ，否则可以去掉
-    api "me.jessyan:retrofit-url-manager:1.4.0"
+    api rootProject.ext.dependencies["retrofit-url-manager"]
     // 加载图片框架
-    api 'com.github.bumptech.glide:glide:4.8.0'
+    api rootProject.ext.dependencies["glide"]
     // 权限框架
-    api 'com.yanzhenjie:permission:2.0.0-rc11'
+    api rootProject.ext.dependencies["permission"]
 
-    api 'com.alibaba:fastjson:1.2.9'
+    api rootProject.ext.dependencies["fastjson"]
+
+    api rootProject.ext.dependencies["okhttp-logging"]
 }

@@ -17,13 +17,11 @@ package com.vea.atoms.mvp.utils;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Message;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
@@ -37,7 +35,6 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.vea.atoms.mvp.app.AppManager;
 import com.vea.atoms.mvp.app.IApp;
 import com.vea.atoms.mvp.di.component.AppComponent;
 
@@ -53,7 +50,6 @@ import java.security.MessageDigest;
  */
 public class AtomsUtils {
     static public Toast mToast;
-
 
     private AtomsUtils() {
         throw new IllegalStateException("you can't instantiate me!");
@@ -78,16 +74,52 @@ public class AtomsUtils {
         v.setHint(new SpannedString(ss)); // 一定要进行转换,否则属性会消失
     }
 
-
     /**
-     * dip转pix
+     * dp 转 px
      *
-     * @param dpValue
-     * @return
+     * @param context {@link Context}
+     * @param dpValue {@code dpValue}
+     * @return {@code pxValue}
      */
-    public static int dip2px(Context context, float dpValue) {
+    public static int dip2px(@NonNull Context context, float dpValue) {
         final float scale = getResources(context).getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    /**
+     * px 转 dp
+     *
+     * @param context {@link Context}
+     * @param pxValue {@code pxValue}
+     * @return {@code dpValue}
+     */
+    public static int pix2dip(@NonNull Context context, int pxValue) {
+        final float scale = getResources(context).getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
+    /**
+     * sp 转 px
+     *
+     * @param context {@link Context}
+     * @param spValue {@code spValue}
+     * @return {@code pxValue}
+     */
+    public static int sp2px(@NonNull Context context, float spValue) {
+        final float fontScale = getResources(context).getDisplayMetrics().scaledDensity;
+        return (int) (spValue * fontScale + 0.5f);
+    }
+
+    /**
+     * px 转 sp
+     *
+     * @param context {@link Context}
+     * @param pxValue {@code pxValue}
+     * @return {@code spValue}
+     */
+    public static int px2sp(@NonNull Context context, float pxValue) {
+        final float fontScale = getResources(context).getDisplayMetrics().scaledDensity;
+        return (int) (pxValue / fontScale + 0.5f);
     }
 
     /**
@@ -103,15 +135,6 @@ public class AtomsUtils {
     public static String[] getStringArray(Context context, int id) {
         return getResources(context).getStringArray(id);
     }
-
-    /**
-     * pix转dip
-     */
-    public static int pix2dip(Context context, int pix) {
-        final float densityDpi = getResources(context).getDisplayMetrics().density;
-        return (int) (pix / densityDpi + 0.5f);
-    }
-
 
     /**
      * 从 dimens 中获得尺寸
@@ -140,7 +163,6 @@ public class AtomsUtils {
      *
      * @return
      */
-
     public static String getString(Context context, int stringID) {
         return getResources(context).getString(stringID);
     }
@@ -150,7 +172,6 @@ public class AtomsUtils {
      *
      * @return
      */
-
     public static String getString(Context context, String strName) {
         return getString(context, getResources(context).getIdentifier(strName, "string", context.getPackageName()));
     }
@@ -227,8 +248,6 @@ public class AtomsUtils {
         return getResources(context).getDrawable(rID);
     }
 
-
-
     /**
      * 获得屏幕的宽度
      *
@@ -243,10 +262,9 @@ public class AtomsUtils {
      *
      * @return
      */
-    public static int getScreenHeidth(Context context) {
+    public static int getScreenHeight(Context context) {
         return getResources(context).getDisplayMetrics().heightPixels;
     }
-
 
     /**
      * 获得颜色
@@ -282,7 +300,6 @@ public class AtomsUtils {
         return false;
     }
 
-
     /**
      * MD5
      *
@@ -308,9 +325,8 @@ public class AtomsUtils {
         return hex.toString();
     }
 
-
     /**
-     * 全屏,并且沉侵式状态栏
+     * 全屏,并且沉浸式状态栏
      *
      * @param activity
      */
@@ -320,23 +336,6 @@ public class AtomsUtils {
         activity.getWindow().setAttributes(attrs);
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-    }
-
-
-    /**
-     * 配置 RecyclerView
-     *
-     * @param recyclerView
-     * @param layoutManager
-     * @deprecated Use {@link #configRecyclerView(RecyclerView, RecyclerView.LayoutManager)} instead
-     */
-    @Deprecated
-    public static void configRecycleView(final RecyclerView recyclerView
-            , RecyclerView.LayoutManager layoutManager) {
-        recyclerView.setLayoutManager(layoutManager);
-        //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
     /**
@@ -353,7 +352,6 @@ public class AtomsUtils {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-
     public static AppComponent obtainAppComponentFromContext(Context context) {
         Preconditions.checkNotNull(context, "%s cannot be null", Context.class.getName());
         Preconditions.checkState(context.getApplicationContext() instanceof IApp, "Application does not implements IApp");
@@ -362,16 +360,17 @@ public class AtomsUtils {
 
     /**
      * 检查网络是否可用
+     *
      * @param context
-     * @return true,false
+     * @return true, false
      */
-    public static boolean isNetWorkAvailable(Context context){
+    public static boolean isNetWorkAvailable(Context context) {
 
         ConnectivityManager connectManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo info = connectManager.getActiveNetworkInfo();
 
-        return (info!=null && info.isAvailable());
+        return (info != null && info.isAvailable());
 
     }
 

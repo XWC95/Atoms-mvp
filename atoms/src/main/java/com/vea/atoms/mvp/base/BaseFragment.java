@@ -15,6 +15,7 @@
  */
 package com.vea.atoms.mvp.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,6 +27,8 @@ import android.widget.Toast;
 
 import com.vea.atoms.mvp.di.component.AppComponent;
 import com.vea.atoms.mvp.utils.AtomsUtils;
+
+import org.simple.eventbus.EventBus;
 
 import javax.inject.Inject;
 
@@ -46,6 +49,18 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
 
     private Unbinder mUnBinder;
 
+    private BaseActivity mBaseActivity;
+
+    public BaseActivity getBaseActivity() {
+        return mBaseActivity;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mBaseActivity = (BaseActivity) context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,7 +68,7 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         setupFragmentComponent(AtomsUtils.obtainAppComponentFromContext(getActivity()));
@@ -61,11 +76,17 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
             mPresenter.attachView(this);
         }
         mUnBinder = ButterKnife.bind(this, view);
+        if (useEventBus()) {
+            EventBus.getDefault().register(this);
+        }
         initData(savedInstanceState);
     }
 
     @Override
     public void onDestroyView() {
+        if (useEventBus()) {
+            EventBus.getDefault().unregister(this);
+        }
         super.onDestroyView();
         mUnBinder.unbind();
     }
@@ -83,6 +104,10 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
 
     }
 
+    protected boolean useEventBus() {
+        return true;
+    }
+
     protected abstract int getLayoutId();
 
     protected abstract void initData(@Nullable Bundle savedInstanceState);
@@ -92,5 +117,20 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
         if (getActivity() != null) {
             Toast.makeText(getActivity().getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void showLoading() {
+        mBaseActivity.showLoading();
+    }
+
+    @Override
+    public void hideLoading() {
+        mBaseActivity.hideLoading();
+    }
+
+    @Override
+    public void closePage() {
+
     }
 }

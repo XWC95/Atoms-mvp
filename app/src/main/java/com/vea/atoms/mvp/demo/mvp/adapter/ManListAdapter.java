@@ -34,7 +34,7 @@ public class ManListAdapter extends BaseRecyclerAdapter<User> {
     @Override
     protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, User item, int position) {
         ViewHolder h = (ViewHolder) holder;
-        ImageLoader.loadImage(mContext, h.image, item.getAvatarUrl());
+        ImageLoader.load(mContext, h.image, item.getAvatarUrl());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
