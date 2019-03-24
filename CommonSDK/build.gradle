@@ -39,8 +39,6 @@ dependencies {
     api rootProject.ext.dependencies["retrofit-url-manager"]
     // 加载图片框架
     api rootProject.ext.dependencies["glide"]
-    // 权限框架
-    api rootProject.ext.dependencies["permission"]
 
     api rootProject.ext.dependencies["fastjson"]
 

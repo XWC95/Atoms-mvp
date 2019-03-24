@@ -48,7 +48,7 @@ dependencies {
 
     implementation project(':CommonSDK')
     implementation project(":CommonService")
-
+    implementation rootProject.ext.dependencies["swipeback"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]

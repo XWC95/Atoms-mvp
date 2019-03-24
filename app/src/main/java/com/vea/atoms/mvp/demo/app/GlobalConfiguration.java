@@ -49,6 +49,4 @@ public final class GlobalConfiguration implements ConfigModule {
         // 可以根据不同的逻辑添加多个实现类
         lifecycles.add(new AppLifecyclesImpl());
     }
-
-
 }

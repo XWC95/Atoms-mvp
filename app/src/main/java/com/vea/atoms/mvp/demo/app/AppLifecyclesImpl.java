@@ -19,6 +19,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.from.view.swipeback.SwipeBackHelper;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.vea.atoms.mvp.app.AppLifecycles;
@@ -52,7 +53,8 @@ public class AppLifecyclesImpl implements AppLifecycles {
         }
 
         LeakCanary.install(application);
-
+        // 一键侧滑返回
+        SwipeBackHelper.init(application);
 
     }
 
