@@ -15,14 +15,14 @@ public interface MainContract {
 
     interface View extends IView {
 
-        void getUserSuccess(List<User> users,boolean isRefresh);
+        void getUserSuccess(List<User> users, boolean isRefresh);
 
         void getUserFailure(boolean isRefresh);
     }
 
     interface Presenter extends IPresenter<View> {
 
-        void getUser(int lastIdQueried,boolean isRefresh);
+        void getUser(int lastIdQueried, boolean isRefresh);
     }
 
 

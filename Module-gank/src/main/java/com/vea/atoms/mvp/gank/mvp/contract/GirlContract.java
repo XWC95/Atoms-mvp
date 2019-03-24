@@ -17,8 +17,8 @@ package com.vea.atoms.mvp.gank.mvp.contract;
 
 import android.app.Activity;
 
-import com.vea.atoms.mvp.base.IView;
 import com.vea.atoms.mvp.base.IPresenter;
+import com.vea.atoms.mvp.base.IView;
 import com.vea.atoms.mvp.gank.mvp.model.entity.GankItemBean;
 import com.vea.atoms.mvp.gank.mvp.presenter.GirlPresenter;
 import com.vea.atoms.mvp.gank.mvp.ui.fragment.GirlFragment;

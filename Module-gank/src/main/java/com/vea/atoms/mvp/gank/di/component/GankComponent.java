@@ -17,7 +17,6 @@ package com.vea.atoms.mvp.gank.di.component;
 
 import com.vea.atoms.mvp.di.component.AppComponent;
 import com.vea.atoms.mvp.di.scope.ActivityScope;
-import com.vea.atoms.mvp.di.scope.FragmentScope;
 import com.vea.atoms.mvp.gank.di.module.GankModule;
 import com.vea.atoms.mvp.gank.mvp.contract.GirlContract;
 import com.vea.atoms.mvp.gank.mvp.ui.fragment.GirlFragment;

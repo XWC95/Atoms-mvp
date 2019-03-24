@@ -76,10 +76,10 @@ public class AppDelegate implements IApp, AppLifecycles {
     public void onCreate(@NonNull Application application) {
         this.mApplication = application;
         mAppComponent = DaggerAppComponent
-            .builder()
-            .application(mApplication)//提供application
-            .globalConfigModule(getGlobalConfigModule(mApplication, mModules))//全局配置
-            .build();
+                .builder()
+                .application(mApplication)//提供application
+                .globalConfigModule(getGlobalConfigModule(mApplication, mModules))//全局配置
+                .build();
         mAppComponent.injectDelegate(this);
 
 
@@ -111,7 +111,7 @@ public class AppDelegate implements IApp, AppLifecycles {
     private GlobalConfigModule getGlobalConfigModule(Context context, List<ConfigModule> modules) {
 
         GlobalConfigModule.Builder builder = GlobalConfigModule
-            .builder();
+                .builder();
 
         //遍历 ConfigModule 集合, 给全局配置 GlobalConfigModule 添加参数
         for (ConfigModule module : modules) {
@@ -131,8 +131,8 @@ public class AppDelegate implements IApp, AppLifecycles {
     @Override
     public AppComponent getAppComponent() {
         Preconditions.checkNotNull(mAppComponent,
-            "%s cannot be null,first call %s#onCreate(Application) in %s#onCreate()",
-            AppComponent.class.getName(), getClass().getName(), Application.class.getName());
+                "%s cannot be null,first call %s#onCreate(Application) in %s#onCreate()",
+                AppComponent.class.getName(), getClass().getName(), Application.class.getName());
         return mAppComponent;
     }
 }

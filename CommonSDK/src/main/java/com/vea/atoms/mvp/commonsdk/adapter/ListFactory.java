@@ -1,7 +1,6 @@
 package com.vea.atoms.mvp.commonsdk.adapter;
 
 
-
 /**
  * Created by xwc on 2018/4/18.
  */

@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.vea.atoms.mvp.commonservice" />
+<manifest package="org.vea.atoms.mvp.commonservice" />

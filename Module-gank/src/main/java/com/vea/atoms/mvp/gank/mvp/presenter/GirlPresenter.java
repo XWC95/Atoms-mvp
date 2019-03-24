@@ -63,15 +63,15 @@ public class GirlPresenter extends BasePresenter<GirlContract.View> implements G
         }
 
         repositoryManager.obtainRetrofitService(GankService.class)
-            .getTechList(ShowItemList.NUM_OF_PAGE, mCurrentPager)
-            .subscribeOn(Schedulers.io())
-            .doOnSubscribe(disposable -> {
+                .getTechList(ShowItemList.NUM_OF_PAGE, mCurrentPager)
+                .subscribeOn(Schedulers.io())
+                .doOnSubscribe(disposable -> {
 
-            }).subscribeOn(AndroidSchedulers.mainThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doFinally(() -> {
+                }).subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doFinally(() -> {
 
-            }).subscribe(new Observer<GankBaseResponse<List<GankItemBean>>>() {
+                }).subscribe(new Observer<GankBaseResponse<List<GankItemBean>>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 addSubscription(d);

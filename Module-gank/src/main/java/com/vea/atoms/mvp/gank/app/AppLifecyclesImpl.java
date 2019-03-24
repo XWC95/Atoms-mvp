@@ -37,7 +37,7 @@ import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 public class AppLifecyclesImpl implements AppLifecycles {
 
     @Override
-    public void attachBaseContext(@NonNull Application application,@NonNull Context base) {
+    public void attachBaseContext(@NonNull Application application, @NonNull Context base) {
 
     }
 
@@ -50,7 +50,7 @@ public class AppLifecyclesImpl implements AppLifecycles {
         }
         //使用 RetrofitUrlManager 切换 BaseUrl
         RetrofitUrlManager.getInstance().putDomain(GankService.GANK_DOMAIN_NAME, GankService.GANK_DOMAIN);
-        if(!BuildConfig.DEBUG){
+        if (!BuildConfig.DEBUG) {
             LeakCanary.install(application);
         }
     }

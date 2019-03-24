@@ -19,13 +19,11 @@ package com.vea.atoms.mvp.gank.app;
 /**
  * ================================================
  * 存放一些静态的变量
- *
+ * <p>
  * Created by Vea on 2016/11/24
  * ================================================
  */
 public interface GankConstants {
-
-
 
 
 }

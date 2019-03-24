@@ -37,38 +37,38 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     public void getUser(int lastIdQueried, boolean isRefresh) {
 
         repositoryManager.obtainRetrofitService(DemoService.class)
-            .getUsers(lastIdQueried, ShowItemList.NUM_OF_PAGE)
-            .subscribeOn(Schedulers.io())
-            .doOnSubscribe(disposable -> {
-                // 订阅之前常用于显示loading
-                // TODO
-            }).subscribeOn(AndroidSchedulers.mainThread())
-            .observeOn(AndroidSchedulers.mainThread())  // 在主线程中回调订阅事件
-            .doFinally(() -> {
-                // 结束之后隐藏LoadingView
-            })
-            .subscribe(new Observer<List<User>>() {
-                @Override
-                public void onSubscribe(Disposable d) {
-                    addSubscription(d);
-                }
+                .getUsers(lastIdQueried, ShowItemList.NUM_OF_PAGE)
+                .subscribeOn(Schedulers.io())
+                .doOnSubscribe(disposable -> {
+                    // 订阅之前常用于显示loading
+                    // TODO
+                }).subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())  // 在主线程中回调订阅事件
+                .doFinally(() -> {
+                    // 结束之后隐藏LoadingView
+                })
+                .subscribe(new Observer<List<User>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        addSubscription(d);
+                    }
 
-                @Override
-                public void onNext(List<User> users) {
-                    getView().getUserSuccess(users, isRefresh);
-                }
+                    @Override
+                    public void onNext(List<User> users) {
+                        getView().getUserSuccess(users, isRefresh);
+                    }
 
-                @Override
-                public void onError(Throwable e) {
-                    Timber.d(e);
-                    getView().getUserFailure(isRefresh);
-                }
+                    @Override
+                    public void onError(Throwable e) {
+                        Timber.d(e);
+                        getView().getUserFailure(isRefresh);
+                    }
 
-                @Override
-                public void onComplete() {
+                    @Override
+                    public void onComplete() {
 
-                }
-            });
+                    }
+                });
 
     }
 }

@@ -45,7 +45,7 @@ import okhttp3.Interceptor;
 /**
  * ================================================
  * 框架独创的建造者模式 {@link Module},可向框架中注入外部配置的自定义参数
- *
+ * <p>
  * Created by Vea on 2018/8/24.
  * ================================================
  */
@@ -139,7 +139,7 @@ public class GlobalConfigModule {
 
     @Singleton
     @Provides
-    FormatPrinter provideFormatPrinter(){
+    FormatPrinter provideFormatPrinter() {
         return mFormatPrinter == null ? new DefaultFormatPrinter() : mFormatPrinter;
     }
 
@@ -152,7 +152,7 @@ public class GlobalConfigModule {
             public Cache build(CacheType type) {
                 //若想自定义 LruCache 的 size, 或者不想使用 LruCache, 想使用自己自定义的策略
                 //使用 GlobalConfigModule.Builder#cacheFactory() 即可扩展
-                switch (type.getCacheTypeId()){
+                switch (type.getCacheTypeId()) {
                     //Activity、Fragment 以及 Extras 使用 IntelligentCache (具有 LruCache 和 可永久存储数据的 Map)
                     case CacheType.EXTRAS_TYPE_ID:
                     case CacheType.ACTIVITY_CACHE_TYPE_ID:
@@ -228,7 +228,7 @@ public class GlobalConfigModule {
             return this;
         }
 
-        public Builder formatPrinter(FormatPrinter formatPrinter){
+        public Builder formatPrinter(FormatPrinter formatPrinter) {
             this.formatPrinter = Preconditions.checkNotNull(formatPrinter, FormatPrinter.class.getCanonicalName() + "can not be null.");
             return this;
         }

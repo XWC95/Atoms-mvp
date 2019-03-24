@@ -17,7 +17,7 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
-    
+
     protected List<T> mItems;
     protected Context mContext;
     protected LayoutInflater mInflater;
@@ -239,7 +239,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
     }
 
     public final List<T> getItems() {
-        if(mItems == null ){
+        if (mItems == null) {
             mItems = new ArrayList<>();
         }
         return mItems;
@@ -312,9 +312,10 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
         this.mItems.clear();
         notifyDataSetChanged();
     }
+
     public final void clearAdd(List<T> items) {
         this.mItems.clear();
-         addAll(items);
+        addAll(items);
     }
 
     public void setState(int mState, boolean isUpdate) {
@@ -357,7 +358,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
         @Override
         public void onClick(View v) {
             RecyclerView.ViewHolder holder = (RecyclerView.ViewHolder) v.getTag();
-            if(holder.getAdapterPosition() != -1){
+            if (holder.getAdapterPosition() != -1) {
                 onClick(holder.getAdapterPosition(), holder.getItemId());
             }
         }
@@ -373,7 +374,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
         @Override
         public boolean onLongClick(View v) {
             RecyclerView.ViewHolder holder = (RecyclerView.ViewHolder) v.getTag();
-                return onLongClick(holder.getAdapterPosition(), holder.getItemId());
+            return onLongClick(holder.getAdapterPosition(), holder.getItemId());
         }
 
         public abstract boolean onLongClick(int position, long itemId);

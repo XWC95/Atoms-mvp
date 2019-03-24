@@ -18,7 +18,6 @@ package com.vea.atoms.mvp.gank.mvp.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;

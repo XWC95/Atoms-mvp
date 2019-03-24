@@ -19,7 +19,7 @@ package com.vea.atoms.mvp.integration;
 /**
  * ================================================
  * 用来管理网络请求层
- *
+ * <p>
  * Created by Vea on 17/03/2017 11:15
  * ================================================
  */
@@ -33,8 +33,6 @@ public interface IRepositoryManager {
      * @return
      */
     <T> T obtainRetrofitService(Class<T> service);
-
-
 
 
 }

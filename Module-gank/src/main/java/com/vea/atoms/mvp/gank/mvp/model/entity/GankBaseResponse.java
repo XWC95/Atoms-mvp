@@ -24,7 +24,7 @@ package com.vea.atoms.mvp.gank.mvp.model.entity;
  * Created by Vea on 26/09/2016 15:19
  * ================================================
  */
-public class GankBaseResponse<T>  {
+public class GankBaseResponse<T> {
     private boolean error;
     private T results;
 

@@ -42,11 +42,11 @@ import okhttp3.OkHttpClient;
  */
 @Singleton
 @Component(modules = {
-    AppModule.class,
-    ClientModule.class,
-    GlobalConfigModule.class,
+        AppModule.class,
+        ClientModule.class,
+        GlobalConfigModule.class,
 })
-public interface AppComponent  {
+public interface AppComponent {
 
     Application application();
 

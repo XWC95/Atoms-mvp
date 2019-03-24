@@ -24,7 +24,7 @@ package com.vea.atoms.mvp.base;
  * Created by Vea on 2016/11/24.
  * ================================================
  */
-public interface IPresenter<T extends IView>{
+public interface IPresenter<T extends IView> {
 
     void attachView(T view);
 

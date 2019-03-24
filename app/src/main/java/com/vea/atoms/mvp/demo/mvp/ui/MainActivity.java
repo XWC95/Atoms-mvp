@@ -19,8 +19,6 @@ import com.vea.atoms.mvp.demo.R;
 import com.vea.atoms.mvp.demo.di.component.DaggerDemoComponent;
 import com.vea.atoms.mvp.demo.mvp.adapter.ManListAdapter;
 import com.vea.atoms.mvp.demo.mvp.contract.MainContract;
-
-
 import com.vea.atoms.mvp.demo.mvp.model.entity.User;
 import com.vea.atoms.mvp.demo.mvp.presenter.MainPresenter;
 import com.vea.atoms.mvp.di.component.AppComponent;
@@ -30,10 +28,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
 /**
  * ================================================
- *  首页Activity，展示图片
- *
+ * 首页Activity，展示图片
+ * <p>
  * Created by Vea on 2018/8/23.
  * ================================================
  */
@@ -55,10 +54,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
         DaggerDemoComponent
-            .builder()
-            .appComponent(appComponent)
-            .build()
-            .inject(this);
+                .builder()
+                .appComponent(appComponent)
+                .build()
+                .inject(this);
     }
 
     @Override
@@ -141,9 +140,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                      */
                     User item = adapter.getItem(0);
                     ARouter.getInstance()
-                        .build(RouterHub.GANK_MAIN_ACTIVITY)
-                        .withObject("obj",item)
-                        .navigation();
+                            .build(RouterHub.GANK_MAIN_ACTIVITY)
+                            .withObject("obj", item)
+                            .navigation();
                 }
                 break;
         }

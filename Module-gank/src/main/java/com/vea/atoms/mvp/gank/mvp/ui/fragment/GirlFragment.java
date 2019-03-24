@@ -68,13 +68,13 @@ public class GirlFragment extends BaseFragment<GirlPresenter> implements GirlCon
 
     @Override
     protected void setupFragmentComponent(AppComponent appComponent) {
-        
+
         DaggerGankComponent
-            .builder()
-            .appComponent(appComponent)
-            .view(this)
-            .build()
-            .inject(this);
+                .builder()
+                .appComponent(appComponent)
+                .view(this)
+                .build()
+                .inject(this);
     }
 
     @Override

@@ -30,9 +30,8 @@ import android.support.annotation.NonNull;
 public interface AppLifecycles {
 
     /**
-     *
      * @param application 最初设计上没有这个参数，为了给插件化调用。如何插件化可参考360RePlugin
-     * @param base Context
+     * @param base        Context
      */
     void attachBaseContext(@NonNull Application application, @NonNull Context base);
 

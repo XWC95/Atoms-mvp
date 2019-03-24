@@ -16,7 +16,6 @@
 package com.vea.atoms.mvp.demo.mvp.model.entity;
 
 
-
 import org.vea.atoms.mvp.commonservice.IUserService;
 
 /**
