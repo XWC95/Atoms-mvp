@@ -1,6 +1,9 @@
 ![](image/atoms_banner_v1.0.jpg)
 
 
+### 公众号
+<img src="qrcode_for_gh_e708d5b47c85_258.jpg"/>
+
 ## License
 ``` 
  Copyright 2018, Vea
